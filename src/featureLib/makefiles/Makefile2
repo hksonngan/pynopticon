@@ -1,0 +1,36 @@
+
+include ../Makefile.config
+
+OBJS=VOCImage.o VOCObject.o XMLUtil.o
+
+###
+all:	libvoc vocstat
+
+clean:
+	rm -f *.o
+	rm -f libvoc.a
+	rm -f VOCImage_test
+
+###
+### Production build targets
+###
+vocstat:	libvoc vocstat.o
+	$(CPP) $(CPPFLAGS) -o vocstat vocstat.o libvoc.a \
+		$(BOOST_LIB) $(XMLPP_LIB) $(FEATURES_UTILITY_LIB) $(VIGRA_LIB) -lm
+
+libvoc:	$(OBJS)
+	ar rc libvoc.a $(OBJS)
+	ranlib libvoc.a
+
+check:	VOCImage_test SlidingWindow_test
+
+SlidingWindow_test:	SlidingWindow_test.o SlidingWindow.o libvoc
+	$(CPP) $(CPPFLAGS) -o SlidingWindow_test SlidingWindow_test.o SlidingWindow.o libvoc.a \
+		$(XMLPP_LIB) $(CPPUNIT_LIB) $(VIGRA_LIB) $(FEATURES_UTILITY_LIB)
+	./SlidingWindow_test
+
+VOCImage_test:	VOCImage_test.o libvoc
+	$(CPP) $(CPPFLAGS) -o VOCImage_test VOCImage_test.o libvoc.a \
+		$(XMLPP_LIB) $(CPPUNIT_LIB) $(VIGRA_LIB) $(FEATURES_UTILITY_LIB)
+	./VOCImage_test
+
