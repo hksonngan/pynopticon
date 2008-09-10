@@ -10,7 +10,7 @@ from OWWidget import *
 import OWGUI
 import pynopticon
 import pynopticon.features
-from pynopticon.slots import SeqContainer
+from pynopticon import Images, Descriptors
 
 class OWExtractFeatures(OWWidget):
     settingsList = ['featureID', 'featureType', 'useLazyEvaluation']
@@ -20,8 +20,8 @@ class OWExtractFeatures(OWWidget):
 
         self.callbackDeposit = []
 
-        self.inputs = [("Images PIL", SeqContainer, self.setData)]
-        self.outputs = [("Descriptors", SeqContainer)]
+        self.inputs = [("Images PIL", Images, self.setData)]
+        self.outputs = [("Descriptors", Descriptors)]
 
         self.useLazyEvaluation = pynopticon.useLazyEvaluation
         

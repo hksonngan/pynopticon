@@ -53,9 +53,6 @@ class OWSlotToExampleTable(OWWidget):
                     del self.combiner.inputSlot.senderSlots[id]
             return
         
-        from PyQt4 import QtCore; QtCore.pyqtRemoveInputHook()
-        from IPython.Debugger import Tracer; debug_here = Tracer()
-        debug_here()
 
         if self.combiner is None: # Create multi input combiner
             self.combiner = pynopticon.combine.Combiner(useLazyEvaluation=self.useLazyEvaluation)
@@ -82,6 +79,10 @@ class OWSlotToExampleTable(OWWidget):
 
         domain = orange.Domain([orange.FloatVariable('a%i'%x) for x in xrange(len(data[0]))] + [orange.EnumVariable("class", values = orange.StringList([str(x) for x in self.labels().container.classes]))])
         orngTable = orange.ExampleTable(domain, datalabels)
+        from PyQt4 import QtCore; QtCore.pyqtRemoveInputHook()
+        from IPython.Debugger import Tracer; debug_here = Tracer()
+        debug_here()
+
         self.send("Table", orngTable)
         
 if __name__ == "__main__":

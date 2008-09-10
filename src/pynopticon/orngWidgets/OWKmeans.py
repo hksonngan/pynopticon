@@ -11,7 +11,7 @@ import OWGUI
 from exceptions import Exception
 import pynopticon
 import pynopticon.cluster
-from pynopticon.slots import SeqContainer
+from pynopticon import Descriptors, Codebook
 
 class OWKmeans(OWWidget):
     settingsList = ["numClusters", "maxiter", "numruns", "sampleFromData", "useLazyEvaluation"]
@@ -21,8 +21,8 @@ class OWKmeans(OWWidget):
 
         self.callbackDeposit = []
 
-        self.inputs = [("Data", SeqContainer, self.setData)]
-        self.outputs = [("Codebook", SeqContainer)] # , ("Histograms", ExampleTable)]
+        self.inputs = [("Data", Descriptors, self.setData)]
+        self.outputs = [("Codebook", Codebook)] # , ("Histograms", ExampleTable)]
 
         self.useLazyEvaluation = pynopticon.useLazyEvaluation
         
@@ -35,6 +35,8 @@ class OWKmeans(OWWidget):
         self.maxiter = 0
         self.numruns = 1
         self.sampleFromData = 1.0
+
+        self.loadSettings()
         
         wbN = OWGUI.widgetBox(self.controlArea, "kMeans Settings")
         OWGUI.spin(wbN, self, "numClusters", 1, 100000, 100, None, "Number of clusters   ", orientation="horizontal")

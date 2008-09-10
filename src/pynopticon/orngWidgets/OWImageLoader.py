@@ -27,10 +27,9 @@ import OWGUI
 
 import os
 import os.path
-import numpy
 import pynopticon
 from pynopticon.ImageDataset import *
-from pynopticon.slots import SeqContainer
+from pynopticon import Images, Labels
 
 class OWImageSubFile(OWWidget):
     """Basic functionality like opening a file dialog"""
@@ -95,16 +94,15 @@ class OWImageLoader(OWImageSubFile):
     """Dialog to create your own image dataset.
     Basically, this is a frontend to pynopticon.ImageDataset.ImageDataset."""
 #*********************************************************
-    settingsList=['imgDataset', 'recentFiles', 'doSplit', 'splitRatio', 'doPermutate']
+    settingsList=['loadedDataset', 'recentFiles', 'doSplit', 'splitRatio', 'doPermutate']
     
     def __init__(self, parent=None, signalManager = None):
         OWImageSubFile.__init__(self, parent, signalManager, "Image Dataset")
-
         
         self.imgDataset = pynopticon.ImageDataset.ImageDataset()
         
         self.inputs = []
-        self.outputs = [("Images Train", SeqContainer), ("Images Test", SeqContainer), ("Labels Train", SeqContainer),("Labels Test", SeqContainer)]
+        self.outputs = [("Images Train", Images), ("Images Test", Images), ("Labels Train", Labels),("Labels Test", Labels)]
 
         self.useLazyEvaluation = pynopticon.useLazyEvaluation
         
@@ -115,8 +113,11 @@ class OWImageLoader(OWImageSubFile):
         self.doPermutate = False
         self.doSplit = False
         self.splitRatio = .5
+        self.loadedDataset = None
+
         
         self.loadSettings()
+
         buttonWidth = 1.5
 
         # Create the GUI
@@ -129,8 +130,8 @@ class OWImageLoader(OWImageSubFile):
         self.connect(self.categoryList, SIGNAL('itemEntered(QListWidgetItem *)'), self.editDataset)
         self.connect(self.categoryList, SIGNAL('itemSelectionChanged()'), self.selectionChanged)
 
-        self.filecombo = OWGUI.comboBox(box, self, "Categories")
-        self.filecombo.setMinimumWidth(self.dialogWidth)
+        #self.filecombo = OWGUI.comboBox(box, self, "Categories")
+        #self.filecombo.setMinimumWidth(self.dialogWidth)
 
         self.createNewButton = OWGUI.button(box, self, 'Create new category', callback = self.createNew, disabled=0, width=self.dialogWidth)
         self.removeSelectedButton = OWGUI.button(box, self, 'Remove selected category', callback = self.removeSelected, disabled=1, width=self.dialogWidth)
@@ -161,6 +162,12 @@ class OWImageLoader(OWImageSubFile):
         self.applyButton = OWGUI.button(self.controlArea, self, 'Apply', callback = self.apply, disabled=0, width=self.dialogWidth)
 
         self.inChange = False
+
+        if self.loadedDataset:
+            if pynopticon.verbosity >= 1:
+                print "Loading file from last time"
+            self.imgDataset.loadFromXML(self.loadedDataset)
+            self.updateCategoryList()            
 
 #====================================
     def sendData(self):
@@ -222,6 +229,7 @@ class OWImageLoader(OWImageSubFile):
         if not dataset_file:
             return
         self.imgDataset.loadFromXML(str(dataset_file[0]))
+        self.loadedDataset = str(dataset_file[0])
         self.updateCategoryList()
         
 #==================================
@@ -306,6 +314,7 @@ class OWImageLoader(OWImageSubFile):
     def openFile(self,fn, throughReload = 0):
 #==================================
         self.openFileBase(fn, throughReload=throughReload)
+
 
 #==================================
     # user selected a file from the combo box

@@ -36,10 +36,6 @@ class Kmeans(object):
 	
     def process(self, data):
 	# Perform KMeans clustering
-        from PyQt4 import QtCore; QtCore.pyqtRemoveInputHook()
-        from IPython.Debugger import Tracer; debug_here = Tracer()
-        debug_here()
-
 	if pynopticon.verbosity > 0:
 	    print "Performing kmeans clustering with k=%i..." % self.numClusters
 

@@ -5,8 +5,9 @@ import xml.dom.minidom
 from PIL import Image
 import pynopticon.slots
 import pynopticon
-
-
+import numpy
+from numpy.random import permutation
+ 
 supportedFormats = ['.jpg', '.bmp', '.png', '.gif']
 datasetsPath = os.path.join(pynopticon.__path__[0], 'datasets')
 
@@ -36,7 +37,6 @@ class ImageBase(object):
         """Randomly permutes the sequences in the seq tuple with 
         every sequence permuted in the same order"""
     #==============
-        from numpy.random import permutation
         perm = permutation(len(seq[0]))
         return [list(numpy.array(s)[perm]) for s in seq]
 
