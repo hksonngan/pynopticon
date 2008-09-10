@@ -15,7 +15,7 @@ You have two options in downloading and installing Pynopticon. Your first choice
 
   # Follow the steps from 'Basic install'
   # Download and install the [http://www.ailab.si/orange/ Orange Toolbox] (make sure to use the Qt4 version from the snapshot, *not* version 1.0)
-  # Create a link from the installed pynopticon/orngWidgets directory to orange/OrangeWidgets/Pynopticon
+  # Create a (symbolic) link from the pynopticon/orngWidgets directory to orange/OrangeWidgets/Pynopticon
   # When you start Orange there should be a new tab in the toolbar named 'Pynopticon'
 
 == (Additional) Compile additional feature extractors ==
