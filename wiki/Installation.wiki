@@ -11,14 +11,14 @@ You have two options in downloading and installing Pynopticon. Your first choice
   # Unpack it.
   # Run 'setup.py build' and 'setup.py install'.
 
-== Install with GUI (Windows + Linux) ==
+== Installing the GUI (Windows + Linux) ==
 
   # Follow the steps from 'Basic install'
   # Download and install the [http://www.ailab.si/orange/ Orange Toolbox] (make sure to use the Qt4 version from the snapshot, *not* version 1.0)
   # Create a link from the installed pynopticon/orngWidgets directory to orange/OrangeWidgets/Pynopticon
   # When you start Orange there should be a new tab in the toolbar named 'Pynopticon'
 
-== Compile additional feature extractors ==
+== (Additional) Compile additional feature extractors ==
 
 Included in Pynopticon are feature extractors written by Sebastian Nowozin. They should compile fine under Linux (dependencies include [http://kogs-www.informatik.uni-hamburg.de/~koethe/vigra/ Vigra] and the [http://www.boost.org/ Boost C++ Libraries]). 
  # Change directory to pynopticon/src/featureLib
@@ -26,7 +26,4 @@ Included in Pynopticon are feature extractors written by Sebastian Nowozin. They
  # When all dependencies are installed everything should compile fine.
  # Copy the executable pynopticon/src/featureLib/regcovextract/regcovextract to the installation directory of pynopticon into the bin subdirectory.
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+(*If you manage to compile the source under windows please send me the binary!*)
