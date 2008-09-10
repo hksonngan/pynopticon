@@ -22,6 +22,6 @@ The motivation behind the development of Pynopticon is to make object recognitio
 
 Pynopticon consists of a lot of individual modules which you can stick together in any sensible way you like, this makes it possible to create the object recognition pipeline which works best for your task. 
 
-Because working with large databases of images can be excessively memory consumptios (das wort gibts nicht) Pynopticon was designed with memory efficiency in mind. By using functional programming paradigms data is only stored in memory and computed when it is really needed. However, the user can also choose to save the computed data so that when you want to try out a few things nothing has to be recomputed. 
+Because working with large databases of images can use an excessive amount of memory Pynopticon was designed with memory efficiency in mind. By using functional programming paradigms data is only stored in memory and computed when it is really needed. However, the user can also choose to save the computed data so that when you want to try out a few things nothing has to be recomputed. 
 
 To make Pynopticon more accessible you can use it in combination with the excellent Orange Toolbox (http://www.ailab.si/orange/) which provides a sophisticated GUI, lots of machine learning algorithms and nice visualization features.
