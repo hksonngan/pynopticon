@@ -11,7 +11,7 @@ import OWGUI
 from exceptions import Exception
 import pynopticon
 import pynopticon.histogram
-from pynopticon.slots import SeqContainer
+from pynopticon import Clusters,Histograms
 
 class OWHistogram(OWWidget):
     settingsList = ['bins', 'useLazyEvaluation']
@@ -21,19 +21,17 @@ class OWHistogram(OWWidget):
 
         self.callbackDeposit = []
 
-        self.inputs = [("Data", SeqContainer, self.setData)]
-        self.outputs = [("Histogram", SeqContainer)] # , ("Histograms", ExampleTable)]
+        self.inputs = [("Data", Clusters, self.setData)]
+        self.outputs = [("Histogram", Histograms)] # , ("Histograms", ExampleTable)]
 
         self.useLazyEvaluation = pynopticon.useLazyEvaluation
         
         # Settings
         self.name = name
 	self.histogram = None
-	
-        self.loadSettings()
-
 	self.bins = 200
-        
+        self.loadSettings()        
+
         self.data = None                    # input data set
 
         wbN = OWGUI.widgetBox(self.controlArea, "Histogram Settings")

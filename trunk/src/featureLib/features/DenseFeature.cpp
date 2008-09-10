@@ -6,6 +6,7 @@
 #include <vigra/stdimage.hxx>
 
 #include "DenseFeature.h"
+using namespace std;
 
 namespace Features {
 

@@ -10,7 +10,7 @@ from OWWidget import *
 import OWGUI
 import pynopticon
 import pynopticon.filter
-from pynopticon.slots import SeqContainer
+from pynopticon import Images
 
 class OWFilter(OWWidget):
     settingsList = ['filterID']
@@ -20,8 +20,8 @@ class OWFilter(OWWidget):
 
         self.callbackDeposit = []
 
-        self.inputs = [("Images PIL", SeqContainer, self.setData)]
-        self.outputs = [("Filtered Images PIL", SeqContainer)]
+        self.inputs = [("Images PIL", Images, self.setData)]
+        self.outputs = [("Filtered Images PIL", Images)]
 
         self.useLazyEvaluation = pynopticon.useLazyEvaluation
         
