@@ -13,9 +13,3 @@ The BoF approach works in essence by extracting various features from an image. 
 In the next step these features can be clustered according to their simlarity under the assumption that classes of features provide information about the contents of an image. E.g. when classifying images with animals on them one might extract lots of local features with eyes on them, all these eyes are then grouped together during the clustering. So when you then have a new image where there are lots of extracted features in the eye category it is likely that there is an animal on the picture. Looking up in what cluster a feature lies is called 'quantization'. Counting how many features lie in a certain cluster results in a histogram.
 
 The re
-
-== For Beginners ==
-
-== For Advanced Users ==
-
-== For Developers ==
