@@ -1,6 +1,5 @@
-= Overview =
-
-The Documentation is separated into the following sub categories according to your background and goals with Pynopticon.
+= Documentation =
+#summary Tutorials on Pynopticon for using the GUI, the library and developing your own Pynopticon modules.
 
 * For Beginners - Tutorial on using the GUI to build a quick object recognition pipeline.
 
@@ -9,7 +8,7 @@ Make sure you have Pynopticon and Orange installed correctly and linked the two 
  * From the toolbar choose the tab titled _Pynopticon_.
  * First, we need an input module to load some data to be processed - drag the widget _!ImageLoader _ onto the workspace.
  * Next, we want to choose which data we want our classifier to train on - double click on the new _!ImageLoader _ widget on the workspace.
- * For testing purposes lets choose a predefined dataset - click on the button _!Load Dataset _ in the _!ImageLoader _ widget.
+ * For testing purposes lets choose a predefined dataset - click on the button _Load Dataset _ in the _!ImageLoader _ widget.
  * Select the file called _Caltech_small.xml _.
  *
  
@@ -17,7 +16,7 @@ Make sure you have Pynopticon and Orange installed correctly and linked the two 
 
 * For Advanced Users - Examples on how to use Pynopticon without a GUI.
 
-* For Developers - Documentation and a tutorial on how to create your own widgets.#summary One-sentence summary of this page.
+* For Developers - Documentation and a tutorial on how to create your own widgets.
 
 
 == For Beginners ==
