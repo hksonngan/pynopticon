@@ -14,7 +14,7 @@ You have two options in downloading and installing Pynopticon. Your first choice
 == Installing the GUI (Windows + Linux) ==
 
   # Follow the steps from 'Basic install'
-  # Download and install the [http://www.ailab.si/orange/ Orange Toolbox] (make sure to use the Qt4 version from the snapshot, *not* version 1.0)
+  # Download and install the [http://www.ailab.si/orange/ Orange Toolbox] (make sure to use the Qt4 version from the snapshot, *not* version 1.0) following the installation instructions from the Orange website.
   # Create a (symbolic) link from the pynopticon/orngWidgets directory to orange/OrangeWidgets/Pynopticon
   # When you then start Orange there should be a new tab in the toolbar named 'Pynopticon'
 
