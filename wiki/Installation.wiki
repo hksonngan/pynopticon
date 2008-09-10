@@ -6,7 +6,7 @@ You have two options in downloading and installing Pynopticon. Your first choice
 
 == Basic install (Windows + Linux) ==
 
-  # If not already installed, install Python 2.5 (available in you packet manager (Linux) or here: [http://python.org/download/] http://python.org/download/
+  # If not already installed, install Python 2.5 (available in you packet manager (Linux) or under [http://python.org/download/ http://python.org/download/])
   # Download Pynopticon from the download section.
   # Unpack it.
   # Run 'setup.py build' and 'setup.py install'.
