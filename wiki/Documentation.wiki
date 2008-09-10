@@ -1,4 +1,3 @@
-= Documentation =
 #summary Tutorials on Pynopticon for using the GUI, the library and developing your own Pynopticon modules.
 
 * For Beginners - Tutorial on using the GUI to build a quick object recognition pipeline.
