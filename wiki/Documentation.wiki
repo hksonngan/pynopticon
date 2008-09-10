@@ -8,8 +8,8 @@ Make sure you have Pynopticon and Orange installed correctly and linked the two 
 
  * From the toolbar choose the tab titled _Pynopticon_.
  * First, we need an input module to load some data to be processed - drag the widget _ImageLoader _ onto the workspace.
- * Next, we want to choose which data we want our classifier to train on - double click on the new _ImageLoader_ widget on the workspace.
- * For testing purposes lets choose a predefined dataset - click on the button _Load Dataset_ in the _ImageLoader_ widget.
+ * Next, we want to choose which data we want our classifier to train on - double click on the new _ImageLoader _ widget on the workspace.
+ * For testing purposes lets choose a predefined dataset - click on the button _Load Dataset _ in the _ImageLoader _ widget.
  * Select the file called 'Caltec_small.xml'.
  *
  
