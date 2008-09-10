@@ -4,7 +4,7 @@
 
 You have two options in downloading and installing Pynopticon. Your first choice should be to use easy_install, the alternative way is the traditional download.
 
-== Basic install (Windows + Linux) ==
+== Basic installation (Windows + Linux, no GUI) ==
 
   # If not already installed, install Python 2.5 (available in you packet manager (Linux) or under [http://python.org/download/ http://python.org/download/])
   # Download Pynopticon from the download section.
