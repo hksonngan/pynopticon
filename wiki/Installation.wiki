@@ -16,7 +16,7 @@ You have two options in downloading and installing Pynopticon. Your first choice
   # Follow the steps from 'Basic install'
   # Download and install the [http://www.ailab.si/orange/ Orange Toolbox] (make sure to use the Qt4 version from the snapshot, *not* version 1.0)
   # Create a (symbolic) link from the pynopticon/orngWidgets directory to orange/OrangeWidgets/Pynopticon
-  # When you start Orange there should be a new tab in the toolbar named 'Pynopticon'
+  # When you then start Orange there should be a new tab in the toolbar named 'Pynopticon'
 
 == (Additional) Compile additional feature extractors ==
 
@@ -24,6 +24,6 @@ Included in Pynopticon are feature extractors written by Sebastian Nowozin. They
  # Change directory to pynopticon/src/featureLib
  # Call make.sh
  # When all dependencies are installed everything should compile fine.
- # Copy the executable pynopticon/src/featureLib/regcovextract/regcovextract to the installation directory of pynopticon into the bin subdirectory.
+ # Copy the executable pynopticon/src/featureLib/regcovextract/regcovextract to the directory where pynopticon was installed (under Linux /usr/lib/python2.5/site-packages/pynopticon, under Windows c:\Python2.5\) into the bin subdirectory.
 
 (*If you manage to compile the source under windows please send me the binary!*)
