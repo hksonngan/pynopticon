@@ -4,7 +4,7 @@ The Documentation is separated into the following sub categories according to yo
 
 * For Beginners - Tutorial on using the GUI to build a quick object recognition pipeline.
 
-Make sure you have Pynopticon and Orange installed correctly and linked the two together (read the Installation section). For the theoretical background on what each step in the 
+Make sure you have Pynopticon and Orange installed correctly and linked the two together (read the [Installation] page). For the theoretical background on what each step in the pipeline does read the [Overview] page.
  
 
 
