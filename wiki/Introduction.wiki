@@ -20,7 +20,9 @@ Pynopticon allows you to do object recognition on images following a Bag of Feat
 
 The BoF approach works in essence by extracting various features from an image. Commonly used features are either global (e.g. Color Histograms on the whole image) or local (e.g. extracting Regions of Interest (RoI) and transforming them (one example of this approach is SIFT - Scale Invariant Feature Transform)).
 
-In the next step these features can be clustered according to their simlarity under the assumption that classes of features provide information about the contents of an image. E.g. when classifying images with animals on them one might extract lots of local features with eyes on them
+In the next step these features can be clustered according to their simlarity under the assumption that classes of features provide information about the contents of an image. E.g. when classifying images with animals on them one might extract lots of local features with eyes on them, all these eyes are then grouped together during the clustering. So when you then have a new image where there are lots of extracted features in the eye category it is likely that there is an animal on the picture. Looking up in what cluster a feature lies is called 'quantization'. Counting how many features lie in a certain cluster results in a histogram.
+
+The re
 
 == For Beginners ==
 
