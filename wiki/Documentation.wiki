@@ -11,7 +11,8 @@ Make sure you have Pynopticon and Orange installed correctly and linked the two 
  * Select the file called _Caltech_small.xml_ and click on _Open_.
  * You can see two new categories, you can click on them and see the individual images, if you double click on them the image gets displayed.
  * Next we want to extract some features - drag the _SIFT_ widget onto the workspace.
- * Since we want to extract the features from our dataset click and hold on the little square on the right of the _!ImageLoader _ widget. You can now connect the output of this widget to input of the _SIFT_ widget by moving the line to little square on the left of the _SIFT_ widget.
+ * Since we want to extract the features from our dataset click and hold on the little square on the right of the _!ImageLoader _ widget. You can now connect the output of this widget to input of the _SIFT_ widget by moving the line to the little square on the left of the _SIFT_ widget. Notice that neither any images are loaded nor any computations are performed.
+ *
  
 
 
