@@ -7,7 +7,7 @@ The Documentation is separated into the following sub categories according to yo
 Make sure you have Pynopticon and Orange installed correctly and linked the two together (read the [Installation] instructions). For the theoretical background on what each step in the pipeline does read the [Introduction].
 
  * From the toolbar choose the tab titled _Pynopticon_.
- * First, we need an input module to load some data to be processed - drag the widget _!ImageLoader_ onto the workspace.
+ * First, we need an input module to load some data to be processed - drag the widget _!ImageLoader _ onto the workspace.
  * Next, we want to choose which data we want our classifier to train on - double click on the new _!ImageLoader _ widget on the workspace.
  * For testing purposes lets choose a predefined dataset - click on the button _Load Dataset _ in the _ImageLoader _ widget.
  * Select the file called _Caltec_small.xml_.
