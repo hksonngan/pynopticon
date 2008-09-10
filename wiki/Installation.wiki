@@ -24,6 +24,6 @@ Included in Pynopticon are feature extractors written by Sebastian Nowozin. They
  # Change directory to pynopticon/src/featureLib
  # Call make.sh
  # When all dependencies are installed everything should compile fine.
- # Copy the executable pynopticon/src/featureLib/regcovextract/regcovextract to the directory where pynopticon was installed (under Linux /usr/lib/python2.5/site-packages/pynopticon, under Windows c:\Python2.5\) into the bin subdirectory.
+ # Copy the executable pynopticon/src/featureLib/regcovextract/regcovextract into the bin subdirectory of your pynopticon installation (Linux: /usr/lib/python2.5/site-packages/pynopticon, Windows: c:\Python2.5\).
 
-(*If you manage to compile the source under windows please send me the binary!*)
+(*If you manage to compile the source under windows please send me an eMail with the binary!*)
