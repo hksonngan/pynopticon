@@ -4,7 +4,14 @@ The Documentation is separated into the following sub categories according to yo
 
 * For Beginners - Tutorial on using the GUI to build a quick object recognition pipeline.
 
-Make sure you have Pynopticon and Orange installed correctly and linked the two together (read the [Installation] page). For the theoretical background on what each step in the pipeline does read the [Overview] page.
+Make sure you have Pynopticon and Orange installed correctly and linked the two together (read the [Installation] instructions). For the theoretical background on what each step in the pipeline does read the [Introduction].
+
+ * From the toolbar choose the tab titled 'Pynopticon'.
+ * First, we need an input module to load some data to be processed - drag the widget 'ImageLoader' onto the workspace.
+ * Next, we want to choose which data we want our classifier to train on - double click on the new 'ImageLoader' widget on the workspace.
+ * For testing purposes lets choose a predefined dataset - click on the button 'Load Dataset' in the 'ImageLoad' widget.
+ * Select the file called 'Caltec_small.xml'.
+ *
  
 
 
