@@ -2,7 +2,11 @@
 
 The Documentation is separated into the following sub categories according to your background and goals with Pynopticon.
 
-* For Beginners - Easy examples about the use of the GUI and how to get quickly going.
+* For Beginners - Tutorial on using the GUI to build a quick object recognition pipeline.
+
+Make sure you have Pynopticon and Orange installed correctly and linked the two together (read the Installation section). For the theoretical background on what each step in the 
+ 
+
 
 * For Advanced Users - Examples on how to use Pynopticon without a GUI.
 
