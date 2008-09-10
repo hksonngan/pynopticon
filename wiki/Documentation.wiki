@@ -2,10 +2,15 @@
 
 The Documentation is separated into the following sub categories according to your background and goals with Pynopticon.
 
-* Introduction - Informations about the general approach.
-
 * For Beginners - Easy examples about the use of the GUI and how to get quickly going.
 
 * For Advanced Users - Examples on how to use Pynopticon without a GUI.
 
 * For Developers - Documentation and a tutorial on how to create your own widgets.#summary One-sentence summary of this page.
+
+
+== For Beginners ==
+
+== For Advanced Users ==
+
+== For Developers ==
