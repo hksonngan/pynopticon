@@ -65,7 +65,7 @@ setup (name = 'pynopticon',
        package_dir={'': 'src'},
        include_package_data = True,
        dependency_links = ['http://www.pythonware.com/products/pil/'],
-       install_requires=['setuptools', 'numpy', 'scipy', 'PIL'],#, 'arpack'],
+       install_requires=['setuptools', 'numpy', 'scipy', 'PIL', 'arpack'],
        test_suite = "pynopticon.tests.test_all",
        zip_safe = False
        )

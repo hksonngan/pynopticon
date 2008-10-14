@@ -26,25 +26,27 @@ class testAll(unittest.TestCase):
 
     def createDescr(self):
         ft = pynopticon.filter.Filter(filter='none')
-        #sft = pynopticon.features.SiftValedi()
-        rce = pynopticon.features.Nowozin('color')
+        sft = pynopticon.features.SiftValedi()
+        #rce = pynopticon.features.Nowozin('color')
         #rce = pynopticon.features.SiftRobHess()
         #rce = pynopticon.features.SiftValedi()
         
         ft.inputSlot.registerInput(self.imgDataset.outputSlotTrain)
         #sft.InputSlot.registerInput(ft.outputSlot)
-        rce.inputSlot.registerInput(ft.outputSlot)
-        pynopticon.saveSlots('rce.pickle', rce.outputSlot)
-        return rce
+        sft.inputSlot.registerInput(ft.outputSlot)
+        pynopticon.saveSlots('sft.pickle', sft.outputSlot)
+        return sft
     
     def testGenerator(self):
         CLUSTERS = 500
         #from IPython.Debugger import Tracer; debug_here = Tracer()
         #debug_here()
-        rce = self.createDescr()
-        rce = pynopticon.loadSlots('rce.pickle')
+        #rce = self.createDescr()
+        #rce = pynopticon.loadSlots('rce.pickle')
 
-        
+        ft = pynopticon.filter.Filter(filter='none')
+        #sft = pynopticon.features.Nowozin('edge')
+	sft = pynopticon.features.SiftValediExec()
         km = pynopticon.cluster.Kmeans(CLUSTERS)
         qt = pynopticon.cluster.Quantize()
         hg = pynopticon.histogram.Histogram(CLUSTERS)
@@ -53,15 +55,17 @@ class testAll(unittest.TestCase):
         nz2 = pynopticon.transforms.Normalize('none')
         sc = pynopticon.score.Score()
         pd = pynopticon.score.PairwiseDistances(metric='euclidean')
-        
+
+        ft.inputSlot.registerInput(self.imgDataset.outputSlotTrain)
+        sft.inputSlot.registerInput(ft.outputSlot)
         #km.inputSlot.registerInput(rce.outputSlot)
-        km.inputSlot.registerInput(rce)
-        pynopticon.saveSlots('km.pickle', km.outputSlot)
-        km = pynopticon.loadSlots('km.pickle')
+        km.inputSlot.registerInput(sft.outputSlot)
+        #pynopticon.saveSlots('km.pickle', km.outputSlot)
+        #km = pynopticon.loadSlots('km.pickle')
         
         #km = pynopticon.loadSlots('km.pickle')
-        qt.inputSlotCodebook.registerInput(km)
-        qt.inputSlotVec.registerInput(rce)
+        qt.inputSlotCodebook.registerInput(km.outputSlot)
+        qt.inputSlotVec.registerInput(sft.outputSlot)
         #qt.inputSlotVec.registerInput(rce.outputSlot)
         hg.inputSlot.registerInput(qt.outputSlot)
         nz.inputSlot.registerInput(hg.outputSlot)

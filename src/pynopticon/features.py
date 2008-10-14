@@ -164,8 +164,39 @@ class SiftValedi(object):
             print (len(descr), len(descr[0]))
         return descr
     
+class SiftValediExec(SiftRobHess):
+    binPath = os.path.join(pynopticon.__path__[0], 'bin')
+    siftexec = os.path.join(binPath, 'sift')
+    output = os.path.join(binPath, 'valedi.sift')
+    imgfile = os.path.join(binPath, 'valedi.pgm')
 
-        
+    def process(self, img):
+        if pynopticon.verbosity > 0:
+            print "Extracting features: sift (Valedi's implementation (via executable))..."
+
+
+        # Save Image to file
+	os.chdir(SiftValediExec.binPath)
+	img = img.convert('L')
+        img.save(SiftValediExec.imgfile)
+        # Run the extractor
+        self.callExtractor(SiftValediExec.imgfile, SiftValediExec.output)
+        # Read the descriptors
+        descr = array(self.loadDescr(SiftValediExec.output)[1])
+        if pynopticon.verbosity > 1:
+            print descr.shape
+        return descr
+
+
+    def callExtractor(self, inputImg, outputFile):
+        subprocess.call([SiftValediExec.siftexec, inputImg])
+    
+    
+    def loadDescr(self, fname):
+        f = open(fname,'r')
+        descr = loadtxt(f)
+	return descr[:,4:]
+    
 def sift(*args, **kwargs):
     """ SIFT  Scale-invariant feature transform
     (F,D) = sift(I) where computes the SIFT frames (keypoints) F and 
