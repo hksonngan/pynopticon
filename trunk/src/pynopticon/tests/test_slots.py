@@ -1,7 +1,6 @@
 import unittest
 import pynopticon
 import pynopticon.slots
-import pynopticon.datatypes
 import gc
 
 class TestTypes(unittest.TestCase):
@@ -9,19 +8,19 @@ class TestTypes(unittest.TestCase):
         pass
     
     def setTypesNoConversion(self):
-        self.outType1 = pynopticon.datatypes.ImageType(format='PIL', color_space='RGB')
-        self.inType2 = pynopticon.datatypes.ImageType(format=['PIL'], color_space=['RGB'])
-        self.outType2 = pynopticon.datatypes.VectorType(shape='nestedlist')
+        self.outType1 = pynopticon.slots.ImageType(format='PIL', color_space='RGB')
+        self.inType2 = pynopticon.slots.ImageType(format=['PIL'], color_space=['RGB'])
+        self.outType2 = pynopticon.slots.VectorType(shape='nestedlist')
 
     def setTypesConversion(self):
-        self.outType1 = pynopticon.datatypes.ImageType(format='PIL', color_space='RGB')
-        self.inType2 = pynopticon.datatypes.ImageType(format=['PIL'], color_space=['gray'])
-        self.outType2 = pynopticon.datatypes.VectorType(shape='nestedlist')
+        self.outType1 = pynopticon.slots.ImageType(format='PIL', color_space='RGB')
+        self.inType2 = pynopticon.slots.ImageType(format=['PIL'], color_space=['gray'])
+        self.outType2 = pynopticon.slots.VectorType(shape='nestedlist')
 
     def setTypesIncompatible(self):
-        self.outType1 = pynopticon.datatypes.ImageType(format='PIL', color_space='gray')
-        self.inType2 = pynopticon.datatypes.ImageType(format=['PIL'], color_space=['RGB'])
-        self.outType2 = pynopticon.datatypes.VectorType(shape='nestedlist')
+        self.outType1 = pynopticon.slots.ImageType(format='PIL', color_space='gray')
+        self.inType2 = pynopticon.slots.ImageType(format=['PIL'], color_space=['RGB'])
+        self.outType2 = pynopticon.slots.VectorType(shape='nestedlist')
 
     def setSlots(self):
         self.slotSend = pynopticon.slots.OutputSlot('sender',
@@ -53,14 +52,14 @@ class TestTypes(unittest.TestCase):
         self.setTypesNoConversion()
         self.setSlots()
         self.slotInput.registerInput(self.slotSend)
-        self.assertEqual([i.__name__ for i in self.slotRecv.processFuncs], ['process'])
+        self.assertEqual(self.slotRecv.processFunc.__name__, 'process')
         
     def testSlotConnectConversion(self):
         self.setTypesConversion()
         self.setSlots()
         self.slotInput.registerInput(self.slotSend)
-        self.assertEqual([i.__name__ for i in self.slotInput.converters], ['convert_PIL_RGB_to_PIL_gray'])
-        self.assertEqual([i.__name__ for i in self.slotRecv.processFuncs], ['process'])
+        self.assertEqual([i.__name__ for i in self.slotInput.converters], ['_weakmethod'])
+        self.assertEqual(self.slotRecv.processFunc.__name__, 'process')
 
     def testSlotIncompatible(self):
         self.setTypesIncompatible()

@@ -1,5 +1,5 @@
 import numpy, PIL.Image
-import pynopticon.sift
+import pynopticon.features
 import pynopticon.ImageDataset
 import unittest
 import os.path
@@ -15,13 +15,13 @@ class TestSift(unittest.TestCase):
     def testSiftGenerator(self):
 	#TODO: Check if values are correct descriptors
 	self.sft = pynopticon.features.SiftValedi(Verbose=1)
-	self.sft.InputSlot.registerInput(self.imgDataset.OutputSlotTrain)
-	list(self.sft.OutputSlot)
+	self.sft.inputSlot.registerInput(self.imgDataset.outputSlotTrain)
+	list(self.sft.outputSlot)
 
     def testSiftList(self):
 	self.sft = pynopticon.features.SiftValedi(Verbose=1)
-	self.sft.InputSlot.registerInput(self.imgDataset.OutputSlotTrain)
-	list(self.sft.OutputSlot)
+	self.sft.inputSlot.registerInput(self.imgDataset.outputSlotTrain)
+	list(self.sft.outputSlot)
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestSift)
 unittest.TextTestRunner(verbosity=3).run(suite)

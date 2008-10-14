@@ -1,14 +1,13 @@
 import unittest
-from pynopticon.SeqContainer import SeqContainer
-import pynopticon.prototypes
+from pynopticon.slots import SeqContainer
 
 class TestSeqContainer(unittest.TestCase):
-    def testInvalidInput(self):
-        self.assertRaises(TypeError, SeqContainer, (1,2,3))
-        self.assertRaises(TypeError, SeqContainer, {'test':1})
-        self.assertRaises(TypeError, SeqContainer, 'teststring')
-        self.assertRaises(TypeError, SeqContainer, 1)
-        self.assertRaises(TypeError, SeqContainer, None)
+#     def testInvalidInput(self):
+#         self.assertRaises(TypeError, SeqContainer, (1,2,3))
+#         self.assertRaises(TypeError, SeqContainer, {'test':1})
+#         self.assertRaises(TypeError, SeqContainer, 'teststring')
+#         self.assertRaises(TypeError, SeqContainer, 1)
+#         self.assertRaises(TypeError, SeqContainer, None)
         
     def testCorrectInput(self):
         SeqContainer(range(10))
@@ -16,8 +15,7 @@ class TestSeqContainer(unittest.TestCase):
         SeqContainer(self.iterator, useLazyEvaluation=True)
 
     def testIterating(self):
-        iterator = self.seqContainer
-        for i,j in zip(iterator, range(10)):
+        for i,j in zip(self.seqContainer, range(10)):
             self.assertEqual(i,j, 'Values do not match')
 
     def iterator(self):
@@ -27,28 +25,28 @@ class TestSeqContainer(unittest.TestCase):
     def testToList(self):
         self.assertEqual(list(self.seqContainer), range(10))
 
-    def testGroup(self):
-        producer = pynopticon.prototypes.Producer(self.iterator, useLazyEvaluation=True)
-	producer.outContainer = SeqContainer(producer.inContainer, \
-				  	    owner = producer)
-        consumer1 = pynopticon.prototypes.SeqProcessor(producer.outContainer)
-        consumer2 = pynopticon.prototypes.SeqProcessor(producer.outContainer)
-        self.assertEqual([i for i in producer.outContainer], range(10))
-        self.assertEqual([i for i in producer.outContainer], range(10))
+#     def testGroup(self):
+#         producer = pynopticon.prototypes.Producer(self.iterator, useLazyEvaluation=True)
+# 	producer.outContainer = SeqContainer(producer.inContainer, \
+# 				  	    owner = producer)
+#         consumer1 = pynopticon.prototypes.SeqProcessor(producer.outContainer)
+#         consumer2 = pynopticon.prototypes.SeqProcessor(producer.outContainer)
+#         self.assertEqual([i for i in producer.outContainer], range(10))
+#         self.assertEqual([i for i in producer.outContainer], range(10))
         
-        consumer1.outContainer.register('test1', group=1)
-        consumer2.outContainer.register('test2', group=1)
-        self.assertEqual(producer.outContainer.references.values(), [1, 1])
+#         consumer1.outContainer.register('test1', group=1)
+#         consumer2.outContainer.register('test2', group=1)
+#         self.assertEqual(producer.outContainer.references.values(), [1, 1])
         
-        iter1 = consumer1.outContainer.getIter(group=1)
-        iter2 = consumer2.outContainer.getIter(group=1)
-        self.assertEqual([i for i in iter1], range(10))
-        self.assertEqual([i for i in iter2], range(10))
+#         iter1 = consumer1.outContainer.getIter(group=1)
+#         iter2 = consumer2.outContainer.getIter(group=1)
+#         self.assertEqual([i for i in iter1], range(10))
+#         self.assertEqual([i for i in iter2], range(10))
 
-        iter1 = consumer1.outContainer.getIter(group=1)
-        iter2 = consumer2.outContainer.getIter(group=1)
-        self.assertEqual([i for i in iter1], range(10))
-        self.assertEqual([i for i in iter2], range(10))
+#         iter1 = consumer1.outContainer.getIter(group=1)
+#         iter2 = consumer2.outContainer.getIter(group=1)
+#         self.assertEqual([i for i in iter1], range(10))
+#         self.assertEqual([i for i in iter2], range(10))
         
         
         
@@ -66,10 +64,10 @@ class TestGenerator(TestSeqContainer):
 #        self.seqContainer = SeqContainer(self.iterator, useLazyEvaluation=False)
 
 
-testAll = ['testIterating', 'testToList', 'testGroup']
+testAll = ['testIterating', 'testToList']
 
 def suiteInput():
-    tests = ['testInvalidInput', 'testCorrectInput']
+    tests = ['testCorrectInput']
     return unittest.TestSuite(map(TestSeqContainer, tests))
 
 def suiteList():
