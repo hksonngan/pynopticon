@@ -1,4 +1,4 @@
-from numpy import array,ndarray,float32,loadtxt,float
+from numpy import array,ndarray,float32,loadtxt,float,double
 import subprocess, os
 import pynopticon.slots
 import pynopticon
@@ -164,11 +164,12 @@ class SiftValedi(object):
             print (len(descr), len(descr[0]))
         return descr
     
-class SiftValediExec(SiftRobHess):
+class SiftValediExec(SiftValedi):
     binPath = os.path.join(pynopticon.__path__[0], 'bin')
     siftexec = os.path.join(binPath, 'sift')
     output = os.path.join(binPath, 'valedi.sift')
     imgfile = os.path.join(binPath, 'valedi.pgm')
+
 
     def process(self, img):
         if pynopticon.verbosity > 0:
@@ -177,12 +178,12 @@ class SiftValediExec(SiftRobHess):
 
         # Save Image to file
 	os.chdir(SiftValediExec.binPath)
-	img = img.convert('L')
+	#img = img.convert('L')
         img.save(SiftValediExec.imgfile)
         # Run the extractor
         self.callExtractor(SiftValediExec.imgfile, SiftValediExec.output)
         # Read the descriptors
-        descr = array(self.loadDescr(SiftValediExec.output)[1])
+        descr = self.loadDescr(SiftValediExec.output)
         if pynopticon.verbosity > 1:
             print descr.shape
         return descr
