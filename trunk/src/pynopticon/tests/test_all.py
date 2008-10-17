@@ -38,7 +38,7 @@ class testAll(unittest.TestCase):
         return sft
     
     def testGenerator(self):
-        CLUSTERS = 500
+        CLUSTERS = 50
         #from IPython.Debugger import Tracer; debug_here = Tracer()
         #debug_here()
         #rce = self.createDescr()
@@ -46,7 +46,7 @@ class testAll(unittest.TestCase):
 
         ft = pynopticon.filter.Filter(filter='none')
         #sft = pynopticon.features.Nowozin('edge')
-	sft = pynopticon.features.SiftValediExec()
+	sft = pynopticon.features.SiftValedi()
         km = pynopticon.cluster.Kmeans(CLUSTERS)
         qt = pynopticon.cluster.Quantize()
         hg = pynopticon.histogram.Histogram(CLUSTERS)
