@@ -5,10 +5,8 @@
 <contact>Thomas Wiecki thomas.wiecki(@at@)gmail.com)</contact>
 <priority>3</priority>
 """
-import orngOrangeFoldersQt4
 from OWWidget import *
 import OWGUI
-from exceptions import Exception
 import pynopticon
 from pynopticon.slots import SeqContainer
 
