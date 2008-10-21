@@ -5,7 +5,6 @@
 <contact>Thomas Wiecki thomas.wiecki(@at@)gmail.com)</contact>
 <priority>14</priority>
 """
-
 from OWWidget import *
 import OWGUI
 import pynopticon

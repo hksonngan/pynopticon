@@ -15,6 +15,11 @@ class Kmeans(object):
     Default is lazy, so the clustering will only be performed when the codebook
     gets accessed."""
     def __init__(self, numClusters, maxiter=0, numruns=20, sampleFromData=1., useLazyEvaluation=pynopticon.useLazyEvaluation):
+        """ numClusters: Number of clusters centroids
+            maxiter: How many iterations to run maximally
+            numruns: How often to start the algorithm
+            sampleFromData: How much of the input data to use -- often it is not necessary to use all the data
+            """
         self.numClusters = numClusters
         self.maxiter = maxiter
         self.numruns = numruns
