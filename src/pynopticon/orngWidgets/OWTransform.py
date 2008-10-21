@@ -10,7 +10,7 @@ from OWWidget import *
 import OWGUI
 import pynopticon
 import pynopticon.transforms
-from pynopticon.slots import SeqContainer
+from pynopticon import Histograms,Labels
 
 class OWTransform(OWWidget):
     settingsList = ['transtype', 'kernel', 'lazyEvaluation']
@@ -20,8 +20,8 @@ class OWTransform(OWWidget):
 
         self.callbackDeposit = []
 
-        self.inputs = [("Untransformed Data", SeqContainer, self.setData), ("Labels", SeqContainer, self.setLabels)]
-        self.outputs = [("Transformed Data", SeqContainer)]
+        self.inputs = [("Untransformed Data", Histograms, self.setData), ("Labels", Labels, self.setLabels)]
+        self.outputs = [("Transformed Data", Histograms)]
 
         self.useLazyEvaluation = pynopticon.useLazyEvaluation
         

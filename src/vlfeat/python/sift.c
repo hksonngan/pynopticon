@@ -151,7 +151,11 @@ static PyObject *sift(PyObject *self, PyObject *args, PyObject *kwargs)
   /* Parse Python tuples into their appropriate variables */
   if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O|iiiOiiiii", kwlist, &matin, &O, &S, &o_min, &input_frames,
                                    &peak_thresh, &edge_thresh, &norm_thresh, &force_orientations, &verbose))
-    return NULL;
+    {
+      PyErr_SetString(PyExc_TypeError, "Error parsing input arguments.");
+      return NULL;
+    }
+
 
   //  matin = (PyArrayObject *) PyArray_ContiguousFromObject(input, PyArray_FLOAT, 2, 2);
   //if (matin == NULL)
@@ -162,7 +166,7 @@ static PyObject *sift(PyObject *self, PyObject *args, PyObject *kwargs)
    * -------------------------------------------------------------- */
 
   if (matin->nd != 2 || matin->descr->type_num != PyArray_FLOAT) {
-    printf("I must be a 2d matrix of dtype float32\n") ;
+    PyErr_SetString(PyExc_TypeError, "I must be a 2d matrix of dtype float32\n");
     return NULL;
   }
 
@@ -171,13 +175,13 @@ static PyObject *sift(PyObject *self, PyObject *args, PyObject *kwargs)
   // vl_sift_pix is float!
   data = (vl_sift_pix *) matin->data;
 
-  M = matin->dimensions[0];
-  N = matin->dimensions[1];
+  N = matin->dimensions[0];
+  M = matin->dimensions[1];
 
   if (input_frames != NULL) {
     ikeys_array = (PyArrayObject *) PyArray_ContiguousFromObject(input_frames, PyArray_FLOAT, 2, 2);
     if (ikeys_array->dimensions[0] != 4) {
-      printf("'Frames' must be a 4 x N matrix.x\n");
+      PyErr_SetString(PyExc_TypeError, "'Frames' must be a 4 x N matrix.");
       return NULL;
     }
     nikeys = ikeys_array->dimensions[1];
@@ -317,9 +321,9 @@ static PyObject *sift(PyObject *self, PyObject *args, PyObject *kwargs)
           /* make enough room for all these keypoints and more */
           if (reserved < nframes + 1) {
             reserved += 2 * nkeys ;
-            frames = malloc (4 * sizeof(double) * reserved) ;
+            frames = (double*) realloc (frames, 4 * sizeof(double) * reserved) ;
             if (nout > 1) {
-              descr  = malloc (128 * sizeof(vl_uint8) * reserved) ;
+              descr  = (vl_uint8*) realloc (descr, 128 * sizeof(vl_uint8) * reserved) ;
             }
           }
 

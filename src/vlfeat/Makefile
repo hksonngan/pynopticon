@@ -31,7 +31,7 @@ CFLAGS           += -I. -pedantic -Wall -std=c89 -g -O0
 CFLAGS           += -Wno-unused-function 
 CFLAGS           += -Wno-long-long
 LDFLAGS          +=
-MEX_CFLAGS        = CFLAGS='$$CFLAGS $(CFLAGS)' -L$(BINDIR) -lvl -Itoolbox
+MEX_CFLAGS        = CFLAGS='$$CFLAGS $(CFLAGS)' -L$(BINDIR) -lvl -Itoolbox -g
 
 # Determine on the flight the system we are running on
 Darwin_PPC_ARCH    := mac

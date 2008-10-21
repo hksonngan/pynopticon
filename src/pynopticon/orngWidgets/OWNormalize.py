@@ -10,7 +10,7 @@ from OWWidget import *
 import OWGUI
 import pynopticon
 import pynopticon.transforms
-from pynopticon.slots import SeqContainer
+from pynopticon import Histograms
 
 class OWNormalize(OWWidget):
     settingsList = ['normtype']
@@ -20,8 +20,8 @@ class OWNormalize(OWWidget):
 
         self.callbackDeposit = []
 
-        self.inputs = [("Unnormalized Data", SeqContainer, self.setData)]
-        self.outputs = [("Normalized Data", SeqContainer)]
+        self.inputs = [("Unnormalized Data", Histograms, self.setData)]
+        self.outputs = [("Normalized Data", Histograms)]
 
         self.useLazyEvaluation = pynopticon.useLazyEvaluation
         
