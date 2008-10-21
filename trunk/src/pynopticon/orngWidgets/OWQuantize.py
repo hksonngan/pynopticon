@@ -10,7 +10,7 @@ from OWWidget import *
 import OWGUI
 from exceptions import Exception
 import pynopticon.cluster
-from pynopticon.slots import SeqContainer
+from pynopticon import Codebook,Clusters,Descriptors
 
 class OWQuantize(OWWidget):
     settingsList = ['useLazyEvaluation']
@@ -20,8 +20,8 @@ class OWQuantize(OWWidget):
 
         self.callbackDeposit = []
 
-        self.inputs = [("Codebook", SeqContainer, self.setCodebook), ("Data", SeqContainer, self.setData)]
-        self.outputs = [("Clusters", SeqContainer)]
+        self.inputs = [("Codebook", Codebook, self.setCodebook), ("Data", Descriptors, self.setData)]
+        self.outputs = [("Clusters", Clusters)]
 
         self.useLazyEvaluation = pynopticon.useLazyEvaluation
         

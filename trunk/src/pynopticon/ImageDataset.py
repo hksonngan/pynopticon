@@ -8,7 +8,7 @@ import pynopticon
 import numpy
 from numpy.random import permutation
  
-supportedFormats = ['.jpg', '.bmp', '.png', '.gif']
+supportedFormats = ['.jpg', '.bmp', '.png', '.gif', '.pgm']
 datasetsPath = os.path.join(pynopticon.__path__[0], 'datasets')
 
 #****************************************************************

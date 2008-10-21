@@ -8,7 +8,8 @@
 import orngOrangeFoldersQt4
 from OWWidget import *
 import OWGUI
-from pynopticon.slots import SeqContainer
+from pynopticon import Histograms,Labels
+
 import pynopticon.combine
 import weakref
 import orange
@@ -21,7 +22,7 @@ class OWSlotToExampleTable(OWWidget):
 
         self.callbackDeposit = []
 
-        self.inputs = [("SeqContainer", SeqContainer, self.setData, Multiple), ("Labels", SeqContainer, self.setLabels)]
+        self.inputs = [("Histograms", Histograms, self.setData, Multiple), ("Labels", Labels, self.setLabels)]
         self.outputs = [("Table", ExampleTable)]
 
         self.combiner = None
@@ -79,9 +80,6 @@ class OWSlotToExampleTable(OWWidget):
 
         domain = orange.Domain([orange.FloatVariable('a%i'%x) for x in xrange(len(data[0]))] + [orange.EnumVariable("class", values = orange.StringList([str(x) for x in self.labels().container.classes]))])
         orngTable = orange.ExampleTable(domain, datalabels)
-        from PyQt4 import QtCore; QtCore.pyqtRemoveInputHook()
-        from IPython.Debugger import Tracer; debug_here = Tracer()
-        debug_here()
 
         self.send("Table", orngTable)
         

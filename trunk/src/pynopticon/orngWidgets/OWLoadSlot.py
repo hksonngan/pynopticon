@@ -15,7 +15,7 @@ from pynopticon.slots import SeqContainer
 class OWLoadSlot(OWWidget):
     settingsList = []
 
-    def __init__(self, parent=None, signalManager = None, name='kmeans'):
+    def __init__(self, parent=None, signalManager = None, name='Loader'):
         OWWidget.__init__(self, parent, signalManager, name, wantMainArea = 0)
 
         self.callbackDeposit = []

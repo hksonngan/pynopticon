@@ -10,7 +10,7 @@ from OWWidget import *
 import OWGUI
 import pynopticon
 import pynopticon.features
-from pynopticon.slots import SeqContainer
+from pynopticon import Images,Descriptors
 
 class OWSift(OWWidget):
     settingsList = ["useLazyEvaluation", "Octave", "Levels", "FirstOctave", "PeakThresh", "EdgeThresh", "NormThresh", "Orientations"]
@@ -20,8 +20,8 @@ class OWSift(OWWidget):
 
         self.callbackDeposit = []
 
-        self.inputs = [("Images PIL", SeqContainer, self.setData)]
-        self.outputs = [("Descriptors", SeqContainer)]
+        self.inputs = [("Images PIL", Images, self.setData)]
+        self.outputs = [("Descriptors", Descriptors)]
 
         
         

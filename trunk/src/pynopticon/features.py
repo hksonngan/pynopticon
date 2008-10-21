@@ -2,7 +2,7 @@ from numpy import array,ndarray,float32,loadtxt,float,double
 import subprocess, os
 import pynopticon.slots
 import pynopticon
-
+import copy
 
 class Nowozin(object):
     binPath = os.path.join(pynopticon.__path__[0], 'bin')
@@ -159,7 +159,7 @@ class SiftValedi(object):
     def process(self, img):
         if pynopticon.verbosity > 0:
             print "Computing sift-descriptors (Valedi implementation)..."
-        descr = sift(array(img, dtype=float32), **self.kwargs)[1]
+        descr = sift(img, **self.kwargs)[1]
         if pynopticon.verbosity >= 2:
             print (len(descr), len(descr[0]))
         return descr
@@ -198,7 +198,7 @@ class SiftValediExec(SiftValedi):
         descr = loadtxt(f)
 	return descr[:,4:]
     
-def sift(*args, **kwargs):
+def sift(img, **kwargs):
     """ SIFT  Scale-invariant feature transform
     (F,D) = sift(I) where computes the SIFT frames (keypoints) F and 
     the SIFT descriptors D of the image I. I is a gray-scale image in 
@@ -240,6 +240,10 @@ def sift(*args, **kwargs):
     Be verbose (may be repeated)."""
 
     import _sift
+
+    # Since the original implementation was in matlab, we have to
+    # exchange rows and columns
+    img = copy.deepcopy(array(img, dtype=float32).T)
     
     # Type checking, all other type checking is done inside the c function
     assert type(kwargs.get('Octave')) is type(0) or type(kwargs.get('Octave')) is type(None), \
@@ -250,4 +254,9 @@ def sift(*args, **kwargs):
            "'FirstOctave' must be an integer"
     assert type(kwargs.get('Orientations')) is type(0) or type(kwargs.get('Orientations')) is type(None), \
            "'Orientations' must be an integer"
-    return _sift.sift(*args, **kwargs)
+
+    
+    [frames, descr] = _sift.sift(img, **kwargs)
+    frames = copy.deepcopy(frames.T)
+    descr = copy.deepcopy(descr)
+    return [frames, descr]
