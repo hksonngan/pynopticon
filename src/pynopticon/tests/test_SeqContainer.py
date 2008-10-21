@@ -1,5 +1,6 @@
 import unittest
 from pynopticon.slots import SeqContainer
+import pynopticon
 
 class TestSeqContainer(unittest.TestCase):
 #     def testInvalidInput(self):
@@ -25,31 +26,6 @@ class TestSeqContainer(unittest.TestCase):
     def testToList(self):
         self.assertEqual(list(self.seqContainer), range(10))
 
-#     def testGroup(self):
-#         producer = pynopticon.prototypes.Producer(self.iterator, useLazyEvaluation=True)
-# 	producer.outContainer = SeqContainer(producer.inContainer, \
-# 				  	    owner = producer)
-#         consumer1 = pynopticon.prototypes.SeqProcessor(producer.outContainer)
-#         consumer2 = pynopticon.prototypes.SeqProcessor(producer.outContainer)
-#         self.assertEqual([i for i in producer.outContainer], range(10))
-#         self.assertEqual([i for i in producer.outContainer], range(10))
-        
-#         consumer1.outContainer.register('test1', group=1)
-#         consumer2.outContainer.register('test2', group=1)
-#         self.assertEqual(producer.outContainer.references.values(), [1, 1])
-        
-#         iter1 = consumer1.outContainer.getIter(group=1)
-#         iter2 = consumer2.outContainer.getIter(group=1)
-#         self.assertEqual([i for i in iter1], range(10))
-#         self.assertEqual([i for i in iter2], range(10))
-
-#         iter1 = consumer1.outContainer.getIter(group=1)
-#         iter2 = consumer2.outContainer.getIter(group=1)
-#         self.assertEqual([i for i in iter1], range(10))
-#         self.assertEqual([i for i in iter2], range(10))
-        
-        
-        
 
 class TestList(TestSeqContainer):
     def setUp(self):
@@ -57,7 +33,7 @@ class TestList(TestSeqContainer):
 
 class TestGenerator(TestSeqContainer):
     def setUp(self):
-        self.seqContainer = SeqContainer(self.iterator, useLazyEvaluation=True)
+        self.seqContainer = SeqContainer(generator=pynopticon.weakmethod(self, 'iterator'), useLazyEvaluation=True)
 
 #class TestGeneratorToList(TestSeqContainer):
 #    def setUp(self):

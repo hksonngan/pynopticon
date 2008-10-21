@@ -9,7 +9,7 @@ class TestImageDataset(unittest.TestCase):
         self.path = pynopticon.tests.__path__[0]
         self.pathTestImgs = os.path.join(pynopticon.tests.__path__[0], 'testImgs')
         self.setInvalid = [os.path.join(self.pathTestImgs, 'nonexisting.jpg'), os.path.join(self.pathTestImgs, 'test1.jpg')]
-        self.setValid = [os.path.join(self.pathTestImgs,'test2.jpg'), os.path.join(self.pathTestImgs, 'test1.jpg')]
+        self.setValid = [os.path.join(self.pathTestImgs,'test1.jpg'), os.path.join(self.pathTestImgs, 'test2.jpg')]
         
     def addCategories(self, set = None):
         if not set:

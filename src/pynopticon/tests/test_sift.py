@@ -20,7 +20,6 @@ class TestSift(unittest.TestCase):
 	self.sft = pynopticon.features.SiftValedi(Verbose=1)
 	self.sft.inputSlot.registerInput(self.imgDataset.outputSlotTrain)
 	self.descr = list(self.sft.outputSlot)
-        print self.descr
         self.validate()
 
     def testSiftList(self):
@@ -31,7 +30,7 @@ class TestSift(unittest.TestCase):
 
     def validate(self):
         descr_orig = np.loadtxt(os.path.join(self.path, 'orig_descr_test1pgm.sift'), delimiter=',', dtype=np.uint8)
-        self.assertTrue(np.alltrue(self.descr == descr_orig.T))
+        np.testing.assert_array_almost_equal(np.array(self.descr)[0], descr_orig.T, decimal=-1)
         
         
 suite = unittest.TestLoader().loadTestsFromTestCase(TestSift)
