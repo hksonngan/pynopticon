@@ -257,6 +257,6 @@ def sift(img, **kwargs):
 
     
     [frames, descr] = _sift.sift(img, **kwargs)
-    frames = copy.deepcopy(frames.T)
-    descr = copy.deepcopy(descr)
+    #frames = copy.deepcopy(frames.T)
+    #descr = copy.deepcopy(descr.T)
     return [frames, descr]
