@@ -7,9 +7,9 @@ class TestImageDataset(unittest.TestCase):
     def setUp(self):
         self.ImageDataset = ImageDataset()
         self.path = pynopticon.tests.__path__[0]
-        self.pathTestImgs = os.path.join(pynopticon.tests.__path__[0], 'testImgs')
-        self.setInvalid = [os.path.join(self.pathTestImgs, 'nonexisting.jpg'), os.path.join(self.pathTestImgs, 'test1.jpg')]
-        self.setValid = [os.path.join(self.pathTestImgs,'test1.jpg'), os.path.join(self.pathTestImgs, 'test2.jpg')]
+
+        self.setInvalid = ['./testimgs/nonexisting.jpg', './testimgs/test1.jpg']
+        self.setValid = ['./testimgs/test1.jpg', './testimgs/test2.jpg']
         
     def addCategories(self, set = None):
         if not set:
@@ -57,10 +57,10 @@ class TestImageDataset(unittest.TestCase):
         
     def testAddAndDelFnames(self):
         self.addCategories()
-        self.ImageDataset.categories[1].addDir(self.pathTestImgs)
+        self.ImageDataset.categories[1].addDir(os.path.join(pynopticon.__path__[0], 'datasets', 'testimgs'))
         self.assertEqual(self.ImageDataset.categories[1].fnames, self.setValid)
-        self.ImageDataset.categories[1].delFile(os.path.join(self.pathTestImgs, 'test1.jpg'))
-        self.assertEqual(self.ImageDataset.categories[1].fnames, [os.path.join(self.pathTestImgs, 'test2.jpg')])
+        self.ImageDataset.categories[1].delFile('./testimgs/test1.jpg')
+        self.assertEqual(self.ImageDataset.categories[1].fnames, ['./testimgs/test2.jpg'])
         self.ImageDataset.categories[1].delID(0)
         self.assertEqual(len(self.ImageDataset.categories[1].fnames), 0)
 
@@ -70,7 +70,7 @@ class TestImageDataset(unittest.TestCase):
 
     def testIterateFnames(self):
         self.addCategories()
-        for x,y in zip(self.ImageDataset.categories[2], [os.path.join(self.pathTestImgs, 'nonexisting.jpg'), os.path.join(self.pathTestImgs, 'test1.jpg')]):
+        for x,y in zip(self.ImageDataset.categories[2], ['./testimgs/nonexisting.jpg', './testimgs/test1.jpg']):
             self.assertEqual(x,y)
 
     def testSeqContainerValid(self):
