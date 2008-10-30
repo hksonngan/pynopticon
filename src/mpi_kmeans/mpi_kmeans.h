@@ -38,8 +38,8 @@ unsigned int saved_two=0,saved_three_one=0,saved_three_two=0,saved_three_three=0
 #endif
 
 extern "C"{
-double kmeans(double *CXp,const PREC *X,unsigned int *c,unsigned int dim,unsigned int npts,unsigned int nclus,unsigned int maxiter, unsigned int nr_restarts);
-}
+double kmeans(double *CXp, const double *X,unsigned int *c,unsigned int dim,unsigned int npts,unsigned int nclus,unsigned int maxiter, unsigned int nr_restarts);
+  }
 double compute_distance(const double *vec1, const double *vec2, const unsigned int dim);
 	unsigned int assign_point_to_cluster_ordinary(const PREC *px, const double *CX, unsigned int dim,unsigned int nclus);
 void randperm(unsigned int *order, unsigned int npoints);
