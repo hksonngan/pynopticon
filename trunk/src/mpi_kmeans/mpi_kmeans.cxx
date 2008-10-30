@@ -535,14 +535,14 @@ double kmeans_run(double *CX,const PREC *X,unsigned int *c,unsigned int dim,unsi
 	return(sse);
 }
 
-double kmeans(double *CX,const PREC *X,unsigned int *assignment,unsigned int dim,unsigned int npts,unsigned int nclus,unsigned int maxiter, unsigned int restarts)
+double kmeans(double *CX,const double *X,unsigned int *assignment,unsigned int dim,unsigned int npts,unsigned int nclus,unsigned int maxiter, unsigned int restarts)
 {
 	double sse, minsse;
 	unsigned int res = restarts;
 	unsigned int k,i;
 	unsigned int *order, *bestassignment;
 	double *bestCX;
-
+	printf("mpi_c: %f %f %f %f\n", *CX, *(CX+1), *(CX+2), *(CX+3));
 	if (CX==NULL)
 	{
 		order = (unsigned int*)malloc(npts*sizeof(unsigned int));
@@ -557,7 +557,7 @@ double kmeans(double *CX,const PREC *X,unsigned int *assignment,unsigned int dim
 		
 	}
 	sse = kmeans_run(CX,X,assignment,dim,npts,nclus,maxiter);
-	
+
 	if (res>0)
 	{
 		minsse = sse;
@@ -599,5 +599,6 @@ double kmeans(double *CX,const PREC *X,unsigned int *assignment,unsigned int dim
 		free(bestCX);
 		free(order);
 	}
+	printf("final: %f\n", sse);
 	return(sse);
 }

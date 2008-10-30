@@ -19,8 +19,8 @@ def kmeans(X, nclst, maxiter=0, numruns=1):
     npts,dim = X.shape
     assignments=empty( (npts), c_uint )
     
-    bestSSE=N.Inf
-    bestassignments=empty( (npts), c_uint)
+#    bestSSE=N.Inf
+#    bestassignments=empty( (npts), c_uint)
     Xvec = array( reshape( X, (-1,) ), c_double )
     permutation = N.random.permutation( range(npts) ) # randomize order of points
     CX = array(X[permutation[:nclst],:], c_double).flatten()
