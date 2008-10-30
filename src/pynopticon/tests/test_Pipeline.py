@@ -7,7 +7,6 @@ import pynopticon.filter
 import pynopticon.transforms
 import pynopticon.features
 import pynopticon.score
-import hcluster
 
 import pynopticon
 import numpy
@@ -54,7 +53,7 @@ class testAll(unittest.TestCase):
         tf = pynopticon.transforms.Transform('none')
         nz2 = pynopticon.transforms.Normalize('none')
         sc = pynopticon.score.Score()
-        pd = pynopticon.score.PairwiseDistances(metric='euclidean')
+        #pd = pynopticon.score.PairwiseDistances(metric='euclidean')
 
         ft.inputSlot.registerInput(self.imgDataset.outputSlotTrain)
         sft.inputSlot.registerInput(ft.outputSlot)
@@ -76,38 +75,10 @@ class testAll(unittest.TestCase):
         sc.inputSlotLabels.registerInput(self.imgDataset.outputSlotLabelsTrain)
 
         #pd.inputSlot.registerInput(nz2.outputSlot)
-        pd.inputSlot.registerInput(nz2.outputSlot)
-        x = list(pd.outputSlot)
-        print list(sc.outputSlot)
-        #x = numpy.array(list(hg.outputSlot))
-        #from IPython.Debugger import Tracer; debug_here = Tracer()
-        #debug_here()
+        #pd.inputSlot.registerInput(nz2.outputSlot)
+        x = list(sc.outputSlot)
+        print x
 
-        #print list(sc.outputSlot)
-        #del sft
-        #self.assertRaises(AttributeError, list(hg.OutputSlot))
-#       del km
-#       self.assertRaises(AttributeError, list(hg.OutputSlot))
-        
-        #pynopticon.saveSlots('kmeansSlot.pickle', outputSlot = sft.OutputSlot)
-        #savedslot = pynopticon.loadSlots('kmeansSlot.pickle')
-        #print list(savedslot)
-#       assert (list(km.OutputSlot), list(kmSlots['codebook']))
-#       print list(km.OutputSlot)[0].shape
-
-
-        #self.assertEqual([x[1] for x in data], [u'test1', u'test2'])
-        #for x,y in zip(data, [numpy.array([475, 693, 531]), numpy.array([566, 782, 509])]):
-        #    self.assertTrue(all(x[0] == y))
-        
-#     def testList(self):
-#       sft = pynopticon.sift(self.imgDataset.getData())
-#       km = pynopticon.cluster(sft.getData(), 3)
-#       data = list(km.getData())
-#       self.assertEqual([x[1] for x in data], [u'test1', u'test2'])
-        #TODO: Call kmeans with fixed start vectors
-        #for x,y in zip(data, [numpy.array([475, 693, 531]), numpy.array([566, 782, 509])]):
-        #    self.assertTrue(all(x[0] == y))
 
 suite = unittest.TestLoader().loadTestsFromTestCase(testAll)
 unittest.TextTestRunner(verbosity=3).run(suite)

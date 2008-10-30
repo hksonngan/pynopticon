@@ -1,4 +1,4 @@
-import mpi_kmeans
+import _mpi_kmeans
 import numpy
 import numpy.random
 import pynopticon.slots
@@ -50,7 +50,7 @@ class Kmeans(object):
         data = data[samplePoints,:]
 
         
-	self.codebook, self.dist, self.labels = mpi_kmeans.kmeans(numpy.array(data, dtype=c_double), self.numClusters, self.maxiter, self.numruns)
+	self.codebook, self.dist, self.labels = _mpi_kmeans.kmeans(numpy.array(data, dtype=c_double), self.numClusters, self.maxiter, self.numruns)
 
 	return self.codebook
 
