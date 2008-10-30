@@ -20,6 +20,13 @@ import sys
 import os
 import platform
 
+# Seems to be needed, otherwise mpi_kmeans is not compiled with g++
+import distutils.sysconfig
+distutils.sysconfig.get_config_var('LIBS')
+distutils.sysconfig.get_config_var('SYSLIBS')
+import os; os.environ['CC'] = 'gcc'; os.environ['CXX'] = 'g++';
+os.environ['CPP'] = 'g++'
+
 import ez_setup
 ez_setup.use_setuptools()
 
@@ -41,12 +48,21 @@ siftModule = Extension('_sift',
 		       include_dirs = [numpy.get_include(), 'src/vlfeat'],
 		       extra_link_args = ['-lm'])
 
-kmeansModule = Extension('libmpikmeans',
-		       language = 'c++',
-		       sources = ['src/mpi_kmeans/mpi_kmeans.cxx'],
-		       extra_compile_args=['-Wl,-soname=libmpikmeans.so','-O3'])
+kmeansModule = Extension('_mpi_kmeans',
+			 language = 'c++',
+			 include_dirs = [numpy.get_include()],
+			 sources = ['src/mpi_kmeans/mpi_kmeans.cxx', 'src/mpi_kmeans/_mpi_kmeans.cxx'],
+			 extra_compile_args=['-O3'],
+			 extra_link_args = ['-lm','-lstdc++'],
+			 libraries=['stdc++'])
 
-chi2Module = Extension('libchi2',
+libkmeansModule = Extension('libmpikmeans',
+               language = 'c',
+               sources = ['src/mpi_kmeans/mpi_kmeans.cxx'],
+               extra_compile_args=['-Wl,-soname=libmpikmeans.so','-O3'])
+
+
+chi2Module = Extension('libchi1',
                        language = 'c',
                        sources = ['src/mpi-chi2/chi2float.c','src/mpi-chi2/chi2double.c'],
                        include_dirs = ['src/mpi-chi2'],

@@ -21,9 +21,10 @@ def kmeans(X, nclst, maxiter=0, numruns=1):
     
 #    bestSSE=N.Inf
 #    bestassignments=empty( (npts), c_uint)
-    Xvec = array( reshape( X, (-1,) ), c_double )
+    Xvec = array( reshape( X, (-1,) ), c_double, order='C' )
     permutation = N.random.permutation( range(npts) ) # randomize order of points
-    CX = array(X[permutation[:nclst],:], c_double).flatten()
+    CX = array(X[permutation[:nclst],:], c_double, order='C').flatten()
+    print CX
     SSE = mpikmeanslib.kmeans( CX, Xvec, assignments, dim, npts, min(nclst, npts), maxiter, numruns)
     return reshape(CX, (nclst,dim)), SSE, (assignments+1)
 

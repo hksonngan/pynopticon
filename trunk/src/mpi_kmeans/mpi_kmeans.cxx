@@ -483,6 +483,7 @@ double kmeans_run(double *CX,const PREC *X,unsigned int *c,unsigned int dim,unsi
 
 #ifdef KMEANS_VERBOSE
 		sse = compute_sserror(CX,X,c,dim,npts);
+		for
 		printf("iteration %4d, #(changed points): %4d, sse: %4.2f\n",(int)iteration,(int)nchanged,sse);
 #endif
 
@@ -542,7 +543,7 @@ double kmeans(double *CX,const double *X,unsigned int *assignment,unsigned int d
 	unsigned int k,i;
 	unsigned int *order, *bestassignment;
 	double *bestCX;
-	printf("mpi_c: %f %f %f %f\n", *CX, *(CX+1), *(CX+2), *(CX+3));
+
 	if (CX==NULL)
 	{
 		order = (unsigned int*)malloc(npts*sizeof(unsigned int));
@@ -599,6 +600,6 @@ double kmeans(double *CX,const double *X,unsigned int *assignment,unsigned int d
 		free(bestCX);
 		free(order);
 	}
-	printf("final: %f\n", sse);
+
 	return(sse);
 }

@@ -34,10 +34,10 @@ def kmeans_py(np.ndarray[DTYPE_t, ndim=2] X, unsigned int nclst, unsigned int ma
     nclst_real = min(nclst, npts)
     
     cdef np.ndarray assignments=np.empty( (npts), dtype=c_uint)
-        
-    Xvec = array( reshape( X, (-1,) ), c_double )
+    
+    cdef np.ndarray[DTYPE_t, ndim=1] Xvec = array( reshape( X, (-1,) ), order='C')
     permutation = N.random.permutation( range(npts) ) # randomize order of points
-    CX = array(X[permutation[:nclst],:], c_double, order='C').flatten()
+    cdef np.ndarray[DTYPE_t, ndim=1] CX = array(X[permutation[:nclst],:], order='C').flatten()
     print "Calling kmeans"
     cdef double * CXdata
     CXdata = <double*> X.data
@@ -55,7 +55,9 @@ def test():
     
     X = array( rand(12), c_double )
     X.shape = (4,3)
+    print X
     clst,dist,labels = kmeans_py(X, 2)
+    
     print "cluster centers=\n",clst
     print "dist=",dist
     print "cluster labels",labels
