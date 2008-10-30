@@ -17,7 +17,7 @@ DTYPE = np.double
 ctypedef np.double_t DTYPE_t
 
 cdef extern from "mpi_kmeans.h":
-    double kmeans(double *CX, double *X,unsigned int *assignment,unsigned int dim,unsigned int npts,unsigned int nclus,unsigned int maxiter, unsigned int restarts)
+    double c_kmeans "kmeans" (double *CX, double *X,unsigned int *assignment,unsigned int dim,unsigned int npts,unsigned int nclus,unsigned int maxiter, unsigned int restarts)
 
 from ctypes import c_int, c_double, c_uint
 from numpy.ctypeslib import ndpointer
@@ -25,7 +25,7 @@ import numpy as N
 from numpy import empty,array,reshape,arange
 #import mpi_kmeans_py
 
-def kmeans_py(np.ndarray[DTYPE_t, ndim=2] X, unsigned int nclst, unsigned int maxiter=0, unsigned int numruns=1):
+def kmeans(np.ndarray[DTYPE_t, ndim=2] X, unsigned int nclst, unsigned int maxiter=0, unsigned int numruns=1):
     """Wrapper for Peter Gehlers accelerated MPI-Kmeans routine."""
     cdef unsigned int npts = X.shape[0]
     cdef unsigned int dim = X.shape[1]
@@ -42,7 +42,7 @@ def kmeans_py(np.ndarray[DTYPE_t, ndim=2] X, unsigned int nclst, unsigned int ma
     cdef double * CXdata
     CXdata = <double*> X.data
     
-    SSE = kmeans( CXdata, <double *> Xvec.data,
+    SSE = c_kmeans( CXdata, <double *> Xvec.data,
 		  <unsigned int *> assignments.data, dim, npts,
 		  nclst_real, maxiter, numruns)
     print SSE
@@ -56,7 +56,7 @@ def test():
     X = array( rand(12), c_double )
     X.shape = (4,3)
     print X
-    clst,dist,labels = kmeans_py(X, 2)
+    clst,dist,labels = kmeans(X, 2)
     
     print "cluster centers=\n",clst
     print "dist=",dist

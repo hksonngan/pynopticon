@@ -2,7 +2,7 @@ from numpy import array,median,std,mean,log,concatenate,sum,reshape,sqrt,dot,exp
 from ctypes import c_double
 import pynopticon
 import pynopticon.slots
-from mpi_kmeans import kmeans as mpi_kmeans
+import _mpi_kmeans
 
 class PairwiseDistances(object):
     mertics = ['euclidean', 'cityblock', 'sqeuclidean', 'cosine', 'correlation', 'hamming', 'jaccard',
@@ -116,7 +116,7 @@ def score_one_clustering(X, truelabels, num_components, num_iterations):
     #from scipy.cluster.vq import kmeans,vq
     #clst,dist =  kmeans(X, num_components, NUM_ITERATIONS)
     #labels,dist =  vq(X, clst)
-    clst,dist,labels = mpi_kmeans(X, num_components, 200, num_iterations)
+    clst,dist,labels = _mpi_kmeans.kmeans(X, num_components, 200, num_iterations)
     print truelabels
     print labels-1
     return condentropy(truelabels,labels-1)
