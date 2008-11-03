@@ -280,12 +280,13 @@ class SeqContainer(object):
 
     def recompute(self):
         """Update computed data"""
-        if not self.useLazyEvaluation:
-            # Input changed and we have to update our data, set
-            # self.data to none so the next time getDataAsIter() gets
-            # called the data will be recomputed
-            print "RECOMPUTE"
-            self.data = None
+        #if not self.useLazyEvaluation:
+	# Input changed and we have to update our data, set
+	# self.data to none so the next time getDataAsIter() gets
+	# called the data will be recomputed
+	if pynopticon.verbose > 2:
+	    print "Changed parameters, recomputing..."
+	self.data = None
             
     def getDataAsIter(self):
         """Return the stored data in a way it can be passed to iter()."""
@@ -305,7 +306,6 @@ class SeqContainer(object):
 
         elif self.sequence is not None and self.generator is None:
             if self.useLazyEvaluation:
-                # Makes no sense to use generator here
                 self.useLazyEvaluation = False
             return(self.sequence)
         else:
@@ -317,6 +317,8 @@ class SeqContainer(object):
 
         if len(self.iterpool) == 0:
             # Create a pool of cached iterators
+	    if pynopticon.verbosity >= 1:
+		print "Creating cached iterators"
             self.iterpool = list(itertools.tee(self.getDataAsIter(), len(self.references)))
 
         # Hand one cached iterator to the group member.

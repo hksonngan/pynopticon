@@ -94,13 +94,13 @@ class TestTypes(unittest.TestCase):
         self.slotInput.registerInput(self.slotSend)
         
         self.slotInput2 = pynopticon.slots.InputSlot('input2',
-                                              acceptsType=self.inType2)
+						     acceptsType=self.inType2)
         
         self.slotRecv2 = pynopticon.slots.OutputSlot('receiver2',
-					       inputSlot = self.slotInput2,
-					       processFunc=self.process,
-					       outputType=self.outType2,
-					       slotType='sequential')
+						     inputSlot = self.slotInput2,
+						     processFunc=self.process,
+						     outputType=self.outType2,
+						     slotType='sequential')
 
         self.slotInput2.registerInput(self.slotSend)
 
@@ -116,6 +116,7 @@ class TestTypes(unittest.TestCase):
         return item
 
     def iterator(self):
+	print "Producer called"
         for i in xrange(10):
             yield i
 

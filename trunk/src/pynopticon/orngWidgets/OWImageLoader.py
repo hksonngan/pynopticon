@@ -56,12 +56,12 @@ class OWImageSubFile(OWWidget):
         self.connect(self.filecombo, SIGNAL('activated(int)'), self.selectFile)
 
 
-    def browseFile(self, filters=None, inDemos=0, dir=0, save=0):
+    def browseFile(self, filters=None, inDemos=1, dir=0, save=0):
         """Display a FileDialog and select an existing file, 
         or a dir (dir=1) or a new file (save=1).
         filters can be a list with all extensions to be displayed during browsing
         Returned is/are the selected item(s) with complete path."""
-        if not filters:
+	if not filters:
             filters = ["All (*.*)"]
 
         dialog = QFileDialog()
@@ -73,6 +73,11 @@ class OWImageSubFile(OWWidget):
             dialog.setFileMode(QFileDialog.AnyFile)
         else:
             print "Incorrect mode." # TODO, throw an exception here
+
+	if inDemos:
+	    import pynopticon
+	    path = os.path.join(pynopticon.__path__[0], 'datasets')
+	    dialog.setDirectory(path)
 
         dialog.setFilters(QStringList(filters))
         dialog.setViewMode(QFileDialog.List)

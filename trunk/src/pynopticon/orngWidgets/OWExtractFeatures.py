@@ -1,7 +1,7 @@
 """
 <name>ExtractFeature</name>
 <description>Different kinds of feature extractors.</description>
-<icon>icons/unknown.png</icon>
+<icon>icons/SieveDiagram.png</icon>
 <contact>Thomas Wiecki thomas.wiecki(@at@)gmail.com)</contact>
 <priority>6</priority>
 """
