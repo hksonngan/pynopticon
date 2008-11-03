@@ -3,7 +3,7 @@
 <description>Converts an pynopticon slot to an orange ExampleTable.</description>
 <icon>icons/DataTable.png</icon>
 <contact>Thomas Wiecki thomas.wiecki(@at@)gmail.com)</contact>
-<priority>25</priority>
+<priority>15</priority>
 """
 from OWWidget import *
 import OWGUI
@@ -74,12 +74,12 @@ class OWSlotToExampleTable(OWWidget):
         labels = list(self.labels())
         
         for vec,label in zip(data, labels):
-            datalabels.append(list(vec) + [str(label)])
+            datalabels.append(list(vec) + [str(label)] )
             
-
         domain = orange.Domain([orange.FloatVariable('a%i'%x) for x in xrange(len(data[0]))] + [orange.EnumVariable("class", values = orange.StringList([str(x) for x in self.labels().container.classes]))])
+	print domain[50]
         orngTable = orange.ExampleTable(domain, datalabels)
-
+	print orngTable.domain.classVar
         self.send("Table", orngTable)
         
 if __name__ == "__main__":

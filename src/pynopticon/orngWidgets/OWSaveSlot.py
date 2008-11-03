@@ -8,17 +8,23 @@
 from OWWidget import *
 import OWGUI
 import pynopticon
-from pynopticon.slots import SeqContainer
+from pynopticon import Descriptors, Codebook, Images, Labels, Histograms, Clusters
 
 class OWSaveSlot(OWWidget):
     settingsList = []
 
-    def __init__(self, parent=None, signalManager = None, name='kmeans'):
+    def __init__(self, parent=None, signalManager = None, name='SaveSlot'):
         OWWidget.__init__(self, parent, signalManager, name, wantMainArea = 0)
 
         self.callbackDeposit = []
 
-        self.inputs = [("Data", SeqContainer, self.setData)]
+        self.inputs = [("Descriptors", Descriptors, self.setDataDescriptors),
+		       ("Codebook", Codebook, self.setDataCodebook),
+		       ("Images", Images, self.setDataImages),
+		       ("Labels", Labels, self.setDataLabels),
+		       ("Histograms", Histograms, self.setDataHistograms),
+		       ("Clusters", Clusters, self.setDataClusters)]
+	
         self.outputs = []
 
         self.useLazyEvaluation = pynopticon.useLazyEvaluation
@@ -57,15 +63,37 @@ class OWSaveSlot(OWWidget):
         self.fname = str(selected[0])
 	self.setData(self.slot)
 
-    def setData(self,slot):
+    def setDataDescriptors(self, slot):
+	self.setData(slot, Descriptors)
+
+    def setDataCodebook(self, slot):
+	self.setData(slot, Codebook)
+
+    def setDataImages(self, slot):
+	self.setData(slot, Images)
+
+    def setDataLabels(self, slot):
+	self.setData(slot, Labels)
+
+    def setDataHistograms(self, slot):
+	self.setData(slot, Histograms)
+
+    def setDataClusters(self, slot):
+	self.setData(slot, Clusters)
+	
+    def setData(self, slot, slotType=None):
 	self.slot = slot
+	if slotType:
+	    self.slotType = slotType
+	    
         if self.slot is None or self.fname is None:
             return
-        pynopticon.saveSlots(self.fname, outputSlot=slot)
+
+        pynopticon.saveSlots(self.fname, outputSlot=slot, slotType = self.slotType)
 
 def main():
     a=QApplication(sys.argv)
-    ows=OWKmeans()
+    ows=OWSaveSlot()
     ows.activateLoadedSettings()
     ows.show()
     sys.exit(a.exec_())

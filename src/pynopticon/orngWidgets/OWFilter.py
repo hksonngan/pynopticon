@@ -3,7 +3,7 @@
 <description>Apply a filter to the images.</description>
 <icon>icons/unknown.png</icon>
 <contact>Thomas Wiecki thomas.wiecki(@at@)gmail.com)</contact>
-<priority>7</priority>
+<priority>20</priority>
 """
 from OWWidget import *
 import OWGUI

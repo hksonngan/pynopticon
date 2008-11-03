@@ -39,17 +39,19 @@ def stripSlot(slot):
     slot.inputSlot = None
     slot.outputType.conversions = None
 
-def saveSlots(fname, outputSlot=None, outputSlots=None):
+def saveSlots(fname, outputSlot=None, outputSlots=None, slotType=None):
     import pickle
-
     # First, let every output slot process and save all the data
     # Also, remove all instancemethods
     try:
-        fdescr = open(fname, mode='w')
+        fdescr = open(fname, mode='wb')
 
         if outputSlot is not None:
             slot = copy.copy(outputSlot)
             stripSlot(slot)
+	    # If called from the orange widget slotType should be set and we need to save it
+	    slot.slotType = slotType
+	    
             if verbosity > 0:
                 print "Saving slot to %s" % fname
             pickle.dump(slot, fdescr)
@@ -69,7 +71,7 @@ def loadSlots(fname):
     import pickle
 
     try:
-        fdescr = open(fname, mode='r')
+        fdescr = open(fname, mode='rb')
         if verbosity > 0:
             print "Loading slot from %s" % fname
         outputSlot = pickle.load(fdescr)
@@ -131,7 +133,12 @@ def applySettings(settingsList, widget, obj=None, kwargs=None, outputSlot=None, 
         
     return False
 
+
 def weakmethod(obj, methname):
+    """Wraps a method into a weakref. Use this to pass methods without
+    increasing the refcount. This is important because when a method
+    gets passed and we delete the object it would not get deleted
+    because Python detects that there is still a reference (to the method)."""
     r = weakref.ref(obj)
     del obj
     def _weakmethod(*args, **kwargs):

@@ -3,7 +3,7 @@
 <description>Normalize input data by different distance measurements.</description>
 <icon>icons/unknown.png</icon>
 <contact>Thomas Wiecki thomas.wiecki(@at@)gmail.com)</contact>
-<priority>13</priority>
+<priority>17</priority>
 """
 from OWWidget import *
 import OWGUI

@@ -10,6 +10,7 @@ import OWGUI
 from exceptions import Exception
 import pynopticon
 from pynopticon.slots import SeqContainer
+from pynopticon import Descriptors, Codebook, Images, Labels, Histograms, Clusters
 
 class OWLoadSlot(OWWidget):
     settingsList = []
@@ -20,7 +21,12 @@ class OWLoadSlot(OWWidget):
         self.callbackDeposit = []
 
         self.inputs = []
-        self.outputs = [("Data", SeqContainer)]
+	self.outputs = [("Descriptors", Descriptors),
+		       ("Codebook", Codebook),
+		       ("Images", Images),
+		       ("Labels", Labels),
+		       ("Histograms", Histograms),
+		       ("Clusters", Clusters)]
 
         self.useLazyEvaluation = pynopticon.useLazyEvaluation
         
@@ -33,7 +39,7 @@ class OWLoadSlot(OWWidget):
 	
         #OWGUI.separator(self.controlArea)
         
-        OWGUI.button(self.controlArea, self, "Load from...", callback = self.browseFile, disabled=0)
+        OWGUI.button(self.controlArea, self, "Loading from...", callback = self.browseFile, disabled=0)
 
         self.resize(50,150)
 
@@ -59,11 +65,15 @@ class OWLoadSlot(OWWidget):
         fname = str(selected[0])
 	print fname
 	slot = pynopticon.loadSlots(fname)
-	self.send("Data", slot)
+
+	if not getattr(slot, "slotType"):
+	    raise NotImplemented, "slotType not set, for the orange slot loader to work the file must have been saved with the orange slot saver"
+	
+	self.send(str(slot.slotType.__name__), slot)
 
 def main():
     a=QApplication(sys.argv)
-    ows=OWKmeans()
+    ows=OWLoadSlot()
     ows.activateLoadedSettings()
     ows.show()
     sys.exit(a.exec_())

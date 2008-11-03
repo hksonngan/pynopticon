@@ -26,7 +26,7 @@ from numpy import empty,array,reshape,arange
 #import mpi_kmeans_py
 
 def kmeans(np.ndarray[DTYPE_t, ndim=2] X, unsigned int nclst, unsigned int maxiter=0, unsigned int numruns=1):
-    """Wrapper for Peter Gehlers accelerated MPI-Kmeans routine."""
+    """Cython wrapper for Peter Gehlers accelerated MPI-Kmeans routine."""
     cdef unsigned int npts = X.shape[0]
     cdef unsigned int dim = X.shape[1]
     cdef unsigned int nclst_real
@@ -37,15 +37,13 @@ def kmeans(np.ndarray[DTYPE_t, ndim=2] X, unsigned int nclst, unsigned int maxit
     
     cdef np.ndarray[DTYPE_t, ndim=1] Xvec = array( reshape( X, (-1,) ), order='C')
     permutation = N.random.permutation( range(npts) ) # randomize order of points
-    cdef np.ndarray[DTYPE_t, ndim=1] CX = array(X[permutation[:nclst],:], order='C').flatten()
-    print "Calling kmeans"
-    cdef double * CXdata
-    CXdata = <double*> X.data
     
-    SSE = c_kmeans( CXdata, <double *> Xvec.data,
+    cdef np.ndarray[DTYPE_t, ndim=1] CX = array(X[permutation[:nclst],:], order='C').flatten()
+    
+    SSE = c_kmeans( <double *> CX.data, <double *> Xvec.data,
 		  <unsigned int *> assignments.data, dim, npts,
 		  nclst_real, maxiter, numruns)
-    print SSE
+
     return reshape(CX, (nclst,dim)), SSE, (assignments+1)
 
 
