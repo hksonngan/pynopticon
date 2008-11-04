@@ -92,6 +92,7 @@ def applySettings(settingsList, widget, obj=None, kwargs=None, outputSlot=None, 
     """
 
     changed = False
+    recomputed = False
 
     if obj is not None:
         for setting in settingsList:
@@ -110,22 +111,24 @@ def applySettings(settingsList, widget, obj=None, kwargs=None, outputSlot=None, 
                     kwargs[setting] = getattr(widget, setting)
                     changed = True
 
-    # Check if outputSlots are provided
+    # Check if outputSlots are provided 
     if outputSlot is not None or outputSlots is not None:
-        # Check if lazy evaluation was turned off
-        if widget.useLazyEvaluation is False:
-            if outputSlot is not None:
-                outputSlots = [outputSlot]
-            if outputSlots is not None:
-                for slot in outputSlots:
-                    # Turn off Lazy Evaluation
-                    slot.useLazyEvaluation = False
-                    slot.container.useLazyEvaluation = False
-                    if verbosity>0:
-                        print "Computing and storing data..."
-                    # Compute data (if necessary)
-                    slot.container.getDataAsIter()
-            
+	if outputSlot is not None:
+	    outputSlots = [outputSlot]
+	if outputSlots is not None:
+	    for slot in outputSlots:
+		# Set Lazy Evaluation to widget value
+		if slot.container.useLazyEvaluation != widget.useLazyEvaluation:
+		    slot.container.useLazyEvaluation = widget.useLazyEvaluation
+		    if verbosity>0:
+			print "Computing and storing data..."
+		    # Compute data (if necessary)
+		    slot.container.recompute()
+		    recomputed = True
+		# Also recompute when there were changes to other widget parameters
+		if changed and not recomputed:
+		    slot.container.recompute()
+		recomputed = False
 
     if changed:
         print "Changed"
