@@ -284,7 +284,7 @@ class SeqContainer(object):
 	# Input changed and we have to update our data, set
 	# self.data to none so the next time getDataAsIter() gets
 	# called the data will be recomputed
-	if pynopticon.verbose > 2:
+	if pynopticon.verbosity >= 1:
 	    print "Changed parameters, recomputing..."
 	self.data = None
             

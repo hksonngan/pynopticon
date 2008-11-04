@@ -3,7 +3,7 @@
 <description>Compute Histograms.</description>
 <icon>icons/Rank.png</icon>
 <contact>Thomas Wiecki thomas.wiecki(@at@)gmail.com)</contact>
-<priority>20</priority>
+<priority>18</priority>
 """
 from OWWidget import *
 import OWGUI

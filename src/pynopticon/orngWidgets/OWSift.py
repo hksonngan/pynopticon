@@ -63,7 +63,7 @@ class OWSift(OWWidget):
 	changed = False
 	
 	if self.sift is not None:
-	    if pynopticon.applySettings(self.settingsList, self, kwargs=self.sift.kwargs):
+	    if pynopticon.applySettings(self.settingsList, self, kwargs=self.sift.kwargs, outputSlot=self.sift.outputSlot):
 		self.sendData()
 
     def sendData(self):

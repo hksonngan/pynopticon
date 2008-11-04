@@ -161,6 +161,7 @@ class ImageDataset(ImageBase):
         (can be either self.all{Names,IDs}Train oder self.all{Names,IDs}Valid)"""
 #===================================
         # Yield the images element wise
+	print 'iterTrain...'
         for img in self.allNamesTrain:
             yield self.loadOneImage(img)
 

@@ -3,7 +3,7 @@
 <description>Converts an pynopticon slot to an orange ExampleTable.</description>
 <icon>icons/DataTable.png</icon>
 <contact>Thomas Wiecki thomas.wiecki(@at@)gmail.com)</contact>
-<priority>15</priority>
+<priority>19</priority>
 """
 from OWWidget import *
 import OWGUI
