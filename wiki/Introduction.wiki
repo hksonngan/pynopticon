@@ -4,7 +4,9 @@
 
 
 == Introduction ==
-Pynopticon allows you to do object recognition (finding out if there is a certain object anywhere on the image) following a Bag of Features (BoF) approach. This approach is well established in the computer vision community, yields good overall results and is applicable to a wide range of object recognition problems. The project was financially supported by the Karl-Steinbuch-Stipendium awared to Thomas Wiecki from the MFG-Stiftung Badenwürttemberg.
+Pynopticon allows you to do object recognition (finding out if there is a certain object anywhere on the image) following a Bag of Features (BoF) approach. This approach is well established in the computer vision community, yields good overall results and is applicable to a wide range of object recognition problems. 
+
+The project was financially supported by the Karl-Steinbuch-Stipendium awared to Thomas Wiecki from the MFG-Stiftung Badenwürttemberg.
 
 === Bag of Features approach ===
 
