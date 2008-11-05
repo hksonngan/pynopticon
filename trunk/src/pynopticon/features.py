@@ -150,11 +150,11 @@ class SiftValedi(object):
         # Define slots
         self.inputSlot = pynopticon.slots.InputSlot(name='Images', acceptsType = self.inputType, useLazyEvaluation=useLazyEvaluation)
         self.outputSlot = pynopticon.slots.OutputSlot(name='Sift Descriptors',
-                                                outputType=self.outputType,
-                                                inputSlot=self.inputSlot,
-                                                processFunc=pynopticon.weakmethod(self, 'process'),
-                                                slotType='sequential',
-                                                useLazyEvaluation=self.useLazyEvaluation)
+                                                      outputType=self.outputType,
+                                                      inputSlot=self.inputSlot,
+                                                      processFunc=pynopticon.weakmethod(self, 'process'),
+                                                      slotType='sequential',
+                                                      useLazyEvaluation=self.useLazyEvaluation)
 
     def process(self, img):
         if pynopticon.verbosity > 0:

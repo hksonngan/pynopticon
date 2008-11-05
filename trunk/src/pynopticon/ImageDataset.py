@@ -13,7 +13,8 @@ datasetsPath = os.path.join(pynopticon.__path__[0], 'datasets')
 
 #****************************************************************
 class ImageBase(object):
-    """Base class with all the functional"""
+    """Base class for ImageLoader and ImageCategory with basic
+    functionality"""
 #****************************************************************
     #=================
     def loadOneImage(self, fname, flatten=False, resize=False):
@@ -83,13 +84,18 @@ class ImageDataset(ImageBase):
         self.categoryNames = None    # Contains the category names
 
         self.outType = pynopticon.slots.ImageType(format='PIL', color_space='RGB')
-	self.outTypeLabels = pynopticon.slots.VectorType(format='flatlist', name='labels')
+	self.outTypeLabels = pynopticon.slots.VectorType(format='flatlist',
+                                                         name='labels')
 	
-        self.outputSlotTrain = pynopticon.slots.OutputSlot(name="ImagesTrain", outputType=self.outType)
-        self.outputSlotTest = pynopticon.slots.OutputSlot(name="ImagesTest", outputType=self.outType)
-        self.outputSlotLabelsTrain = pynopticon.slots.OutputSlot(name="LabelsTrain", sequence=self.allLabelsTrain,
-							   outputType=self.outTypeLabels)
-        self.outputSlotLabelsTest = pynopticon.slots.OutputSlot(name="LabelsTest", sequence=self.allLabelsTest,
+        self.outputSlotTrain = pynopticon.slots.OutputSlot(name="ImagesTrain",
+                                                           outputType=self.outType)
+        self.outputSlotTest = pynopticon.slots.OutputSlot(name="ImagesTest",
+                                                          outputType=self.outType)
+        self.outputSlotLabelsTrain = pynopticon.slots.OutputSlot(name="LabelsTrain",
+                                                                 sequence=self.allLabelsTrain,
+                                                                 outputType=self.outTypeLabels)
+        self.outputSlotLabelsTest = pynopticon.slots.OutputSlot(name="LabelsTest",
+                                                                sequence=self.allLabelsTest,
 							  outputType=self.outTypeLabels)
         
         self.outputSlots = pynopticon.slots.Slots(slots = [self.outputSlotTrain, self.outputSlotTest,

@@ -25,6 +25,20 @@ useCaching=True
 verbosity=1
 useOrange=True
 
+
+import pynopticon.ImageDataset as ImageDataset
+import pynopticon.cluster as cluster
+import pynopticon.combine as combine
+import pynopticon.features as features
+import pynopticon.filter as filter
+import pynopticon.histogram as histogram
+import pynopticon.score as score
+import pynopticon.slots as slots
+import pynopticon.transforms as transforms
+
+def connect(sender, receiver):
+    receiver.registerInput(sender)    
+
 def stripSlot(slot):
     import pickle
     slot.container.useLazyEvaluation=False
