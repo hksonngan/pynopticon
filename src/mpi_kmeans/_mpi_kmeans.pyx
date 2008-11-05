@@ -21,7 +21,6 @@ cdef extern from "mpi_kmeans.h":
 
 from ctypes import c_int, c_double, c_uint
 from numpy.ctypeslib import ndpointer
-import numpy as N
 from numpy import empty,array,reshape,arange
 #import mpi_kmeans_py
 
@@ -36,7 +35,7 @@ def kmeans(np.ndarray[DTYPE_t, ndim=2] X, unsigned int nclst, unsigned int maxit
     cdef np.ndarray assignments=np.empty( (npts), dtype=c_uint)
     
     cdef np.ndarray[DTYPE_t, ndim=1] Xvec = array( reshape( X, (-1,) ), order='C')
-    permutation = N.random.permutation( range(npts) ) # randomize order of points
+    permutation = np.random.permutation( range(npts) ) # randomize order of points
     
     cdef np.ndarray[DTYPE_t, ndim=1] CX = array(X[permutation[:nclst],:], order='C').flatten()
     
