@@ -33,6 +33,50 @@ Make sure you have Pynopticon and Orange installed correctly and linked the two 
 
 The complete feature extraction pipeline described in the _Beginners_ section can also be realized without the GUI and built into your custom Python program. Here is an example program realizing all the steps from above (without the classification) that should be rather self explanatory if you read the above tutorial!
 
+Taken from example.py:
+{
+import pynopticon as pnc
+import os.path
+
+def example():
+    #######################################
+    # Create different objects
+    #######################################
+    
+    # Create the ImageLoader object
+    imgLoader = pnc.ImageDataset.ImageDataset()
+    # Load a predefined dataset from an XML file
+    imgLoader.loadFromXML(os.path.join(pnc.__path__[0], "datasets", "GarfieldBarrel.xml"))
+    # Since we are finished with out dataset we call prepare()
+    imgLoader.prepare()
+    
+    # Create a feature extractor (in this case the sift extractor using the Valedi implemenatation
+    sift = pnc.features.SiftValedi()
+
+    # Create a kmeans-cluster object and set numClusters=50 (50 cluster centroids)
+    kmeans = pnc.cluster.Kmeans(numClusters=50)
+
+    # Create a Quantization object
+    quant = pnc.cluster.Quantize()
+
+    # Create a Histogram object to bin the descriptors later on using 50 bins
+    # (one for every cluster)
+    histo = pnc.histogram.Histogram(bins=50)
+
+    #######################################
+    # Connect the objects via slots
+    #######################################
+    pnc.connect(imgLoader.outputSlotTrain, sift.inputSlot)
+    pnc.connect(sift.outputSlot, kmeans.inputSlot)
+    pnc.connect(sift.outputSlot, quant.inputSlotVec)
+    pnc.connect(kmeans.outputSlot, quant.inputSlotCodebook)
+    pnc.connect(quant.outputSlot, histo.inputSlot)
+
+    ###############################################
+    # Get the histograms as a list of numpy arrays
+    ###############################################
+    histograms = list(histo.outputSlot)
+}
 = For Developers - Documentation and a tutorial on how to create your own widgets. =
 
 Creating your own modules to be used in the Pynopticon framework is quite simple. In general, you define input and output slots and your processing function. All the communication with the other widgets, connection handling and lazy evaluation is done in the background.
