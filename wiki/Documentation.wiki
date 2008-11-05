@@ -34,7 +34,7 @@ Make sure you have Pynopticon and Orange installed correctly and linked the two 
 The complete feature extraction pipeline described in the _Beginners_ section can also be realized without the GUI and built into your custom Python program. Here is an example program realizing all the steps from above (without the classification) that should be rather self explanatory if you read the above tutorial!
 
 Taken from example.py:
-{
+{{{
 import pynopticon as pnc
 import os.path
 
@@ -76,7 +76,7 @@ def example():
     # Get the histograms as a list of numpy arrays
     ###############################################
     histograms = list(histo.outputSlot)
-}
+}}}
 = For Developers - Documentation and a tutorial on how to create your own widgets. =
 
 Creating your own modules to be used in the Pynopticon framework is quite simple. In general, you define input and output slots and your processing function. All the communication with the other widgets, connection handling and lazy evaluation is done in the background.
