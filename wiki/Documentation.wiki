@@ -85,4 +85,41 @@ Creating your own modules to be used in the Pynopticon framework is quite simple
 
 *Additional user provided modules are highly welcome, so if you create a new module send it so that we can include it in the next release!*
 
-Here is an example program that should be self explanatory:
+Here is an example program that defines an module which calls a process function on every input element:
+
+{{{
+import pynopticon as pnc
+
+class exampleSlot(object):
+    def __init__(self):
+        # For every slot we can define the type of data that is
+        # exepected or outputted, for more info have a look at
+        # slots.py
+
+        # Input is expected to be images in PIL format
+        inputType = pnc.slots.ImageType(format=["PIL"], color_space=["gray"])
+        # Output is a flat array (a 2D array consisting of vectors)
+	outputType = pnc.slots.VectorType(name='Example', shape='flatarray')
+
+        # Next we have to define an input and an output slot which
+        # will handle the data sending and receiving
+        self.inputSlot = pnc.slots.InputSlot(name='Images',
+                                             acceptsType = inputType)
+
+	# We have several options of defining an output slot (see the
+        # help for slots.OutputSlots for more infos).  Here, we create
+        # an output slot that receives data from our just defined
+        # inputSlot and calls the function self.process() on every
+        # element.  The reason we are using pnc.weakmethod(class,
+        # method) instead of handing self.process directly is purely
+        # technical, the effect is the same.
+	self.outputSlot = pnc.slots.OutputSlot(name='Example',
+                                               inputSlot = self.inputSlot,
+                                               processFunc = pnc.weakmethod(self, 'process'),
+                                               outputType = outputType)
+
+    def process(self, img):
+        descr = do_funky_computations(img)
+        return descr
+
+}}}
