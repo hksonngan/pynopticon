@@ -76,6 +76,8 @@ def example():
     # Get the histograms as a list of numpy arrays
     ###############################################
     histograms = list(histo.outputSlot)
+
+    # train classificator etc....
 }}}
 = For Developers - Documentation and a tutorial on how to create your own widgets. =
 
