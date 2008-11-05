@@ -112,7 +112,7 @@ class exampleSlot(object):
         # inputSlot and calls the function self.process() on every
         # element.  The reason we are using pnc.weakmethod(class,
         # method) instead of handing self.process directly is purely
-        # technical, the effect is the same.
+        # technical.
 	self.outputSlot = pnc.slots.OutputSlot(name='Example',
                                                inputSlot = self.inputSlot,
                                                processFunc = pnc.weakmethod(self, 'process'),
