@@ -38,7 +38,7 @@ Taken from example.py:
 import pynopticon as pnc
 import os.path
 
-def example():
+def examplePipeline():
     #######################################
     # Create different objects
     #######################################
