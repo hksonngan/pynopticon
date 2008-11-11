@@ -17,14 +17,13 @@
 
 import weakref
 import copy
-
+import os.path
 # set default to use lazy evaluation where possible
 useLazyEvaluation=True
 useTypeChecking=True
 useCaching=True
 verbosity=1
 useOrange=True
-
 
 import pynopticon.ImageDataset as ImageDataset
 import pynopticon.cluster as cluster

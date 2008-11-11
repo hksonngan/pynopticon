@@ -181,9 +181,13 @@ class ImageDataset(ImageBase):
             yield self.loadOneImage(img)
             
 #==================================
-    def loadFromXML(self, filename, verbose=False):
+    def loadFromXML(self, filename, demo=False, verbose=False):
 #==================================
-        """Load a dataset in xml format from filename and return it"""
+        """Load a dataset in xml format from filename and return it.
+	demo=True: Search for filename in the pynopticon dataset directory."""
+	if demo==True:
+	    filename=os.path.join(datasetsPath, filename)
+	    
         dom = xml.dom.minidom.parse(filename)
         def getText(nodelist):
             rc = ""
