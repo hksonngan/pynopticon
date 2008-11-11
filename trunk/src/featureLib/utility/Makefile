@@ -17,8 +17,9 @@ clean:
 ### Production build targets
 ###
 libutility.a: $(OBJS)
-	ar rc libutility.a $(OBJS)
-	ranlib libutility.a
+	
+	i586-mingw32msvc-ar rc libutility.a $(OBJS)
+	i586-mingw32msvc-ranlib libutility.a
 
 utility: utility.o
 	$(CPP) $(CPPFLAGS) $(INCLUDE) -o utility.o \
