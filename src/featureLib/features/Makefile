@@ -22,8 +22,8 @@ clean:
 ### Production build targets
 ###
 libfeatures.a: $(OBJS)
-	ar rc libfeatures.a $(OBJS)
-	ranlib libfeatures.a
+	i586-mingw32msvc-ar rc libfeatures.a $(OBJS)
+	i586-mingw32msvc-ranlib libfeatures.a
 
 ###
 ### Testcases

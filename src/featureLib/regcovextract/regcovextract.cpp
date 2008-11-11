@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <fstream>
 #include <sstream>
-#include <string>
+//#include <string>
 #include <algorithm>
 
 #include <vigra/stdimage.hxx>
@@ -14,7 +14,7 @@
 #include <boost/program_options.hpp>
 
 #include <assert.h>
-#include <stdlib.h>
+//#include <stdlib.h>
 #include <math.h>
 
 #include "DenseFeature.h"
@@ -23,6 +23,12 @@
 #include "utility.h"
 #include "ColorHistogram.h"
 #include "EdgeHistogram.h"
+
+#ifdef HAVE_WINDOWS_H
+#define HAVE_STRTOLL 1
+#define strtoll _strtoui64
+#define strtoull _strtoi64
+#endif 
 
 namespace po = boost::program_options;
 
