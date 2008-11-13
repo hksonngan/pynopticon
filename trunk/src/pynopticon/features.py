@@ -47,7 +47,10 @@ class Nowozin(object):
         
 
     def callExtractor(self, featureType, inputImg, outputFile):
-        retcode = subprocess.call([Nowozin.regcovexec,'--type', featureType, '--image', inputImg, '--output', outputFile], shell=False)
+	try:
+	    retcode = subprocess.call([Nowozin.regcovexec,'--type', featureType, '--image', inputImg, '--output', outputFile], shell=False)
+	except OSError:
+	    raise NotImplementedError, "regcovextract executable not found. For this feature you need to compile the sources found in the subdirectory featureLib by yourself"
         return retcode
 
     def loadDescr(self, fname):
