@@ -32,9 +32,8 @@ def kmeans(X, nclst, maxiter=0, numruns=1):
 if __name__ == "__main__":
     from numpy import array
     from numpy.random import rand
-    
-    X = array( rand(12), c_double )
-    X.shape = (4,3)
+    N.random.seed(1)    
+    X = array( rand(4,3), c_double )
     clst,dist,labels = kmeans(X, 2)
     print "cluster centers=\n",clst
     print "dist=",dist
