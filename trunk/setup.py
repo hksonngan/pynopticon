@@ -34,10 +34,8 @@ from setuptools import setup, Extension
 
 try:
     import numpy
-    import scipy
-    import PIL
 except:
-    print "You need to have numpy, scipy and PIL installed."
+    print "You need to have numpy installed."
     
 import glob
 
