@@ -73,7 +73,20 @@ setup (name = 'pynopticon',
        author = 'Thomas V. Wiecki',
        author_email = 'thomas.wiecki@gmail.com',
        url = 'http://code.google.com/p/pynopticon/',
-       long_description = '''Pynopticon is a toolbox that lets you create and train your own object recognition classifiers. It makes rapid prototyping of object recognition work flows a snap. Simply create a dataset of your favorite image categories, choose some feature extraction methods (e.g. SIFT), post-processing (clustering, histograms, normalization) and a classifier to train (e.g. SVM, Bayes, Descision Trees) and leave the rest to Pynopticon. Pynopticon builds upon the well designed orange toolbox for machine learning and thus comes with a full featured and user friendly GUI. Special care has been taken to let the user decide if he wants to have a lower memory footprint or a be computationally more efficient. All this makes Pynopticon a perfect tool for lectures and their students, beginners in object recognition but also computer vision researches who want to try out an idea without having to write a complex program.''',
+       long_description = '''Pynopticon is a toolbox that lets you create and train your own object
+			     recognition classifiers. It makes rapid prototyping of object
+			     recognition work flows a snap. Simply create a dataset of your
+			     favorite image categories, choose some feature extraction methods
+			     (e.g. SIFT), post-processing (clustering, histograms, normalization)
+			     and a classifier to train (e.g. SVM, Bayes, Descision Trees) and leave
+			     the rest to Pynopticon. Pynopticon builds upon the well designed
+			     orange toolbox for machine learning and thus comes with a full
+			     featured and user friendly GUI. Special care has been taken to let the
+			     user decide if he wants to have a lower memory footprint or a be
+			     computationally more efficient. All this makes Pynopticon a perfect
+			     tool for lectures and their students, beginners in object recognition
+			     but also computer vision researches who want to try out an idea
+			     without having to write a complex program.''',
        ext_modules = [siftModule, kmeansModule], #, chi2Module], ToDo
        packages = ['pynopticon', 'pynopticon.orngWidgets', 'pynopticon.tests'],
        package_dir={'': 'src'},
