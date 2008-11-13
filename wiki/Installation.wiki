@@ -5,7 +5,7 @@
 You have two options in downloading and installing Pynopticon. Your first choice should be to use easy_install, the alternative way is the traditional download.
 
 == Basic installation (Windows, no GUI) ==
- # If not already installed, install Python 2.5 available from [http://www.scipy.org/Download scipy.org] (Python 2.6 is not yet supported)
+ # If not already installed, install Python 2.5 available from [http://python.org/download/ http://python.org] (Python 2.6 is not yet supported)
  # Download the Pynopticon windows installer from the download section and start it.
  # Since this will install only the libraries you may want to install Orange as well to get a GUI. For this follow the instructions "Installing the GUI" below.
 
