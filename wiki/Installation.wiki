@@ -4,17 +4,21 @@
 
 You have two options in downloading and installing Pynopticon. Your first choice should be to use easy_install, the alternative way is the traditional download.
 
-== Basic installation (Windows + Linux, no GUI) ==
+== Basic installation (Windows, No GUI) ==
+ # Simply download the windows installer from the download section and start it.
+ # Since this will install only the libraries you may want to install Orange as well to get a GUI. For this follow the instructions "Installing the GUI" below.
 
-  # If not already installed, install Python 2.5 (available in your packet manager (Linux) or under [http://python.org/download/ http://python.org/download/])
+== Basic installation (Linux, no GUI) ==
+
+  # If not already installed, install Python 2.5 (available in your packet manager)
   # Download Pynopticon from the download section.
   # Unpack it.
   # Run 'setup.py build' and 'setup.py install'.
 
 == Installing the GUI (Windows + Linux) ==
 
-  # Follow the steps from 'Basic install'
-  # Download and install the [http://www.ailab.si/orange/ Orange Toolbox] (make sure to use the Qt4 version from the snapshot, *not* version 1.0) following the installation instructions from the Orange website.
+  # Follow the steps from 'Basic install' for your OS
+  # Download and install the [http://www.ailab.si/orange/ Orange Toolbox] (make sure to use the Qt4 version from the snapshot, *not* version 1.0) following the installation instructions from the Orange website (Orange is available for Windows and Linux).
   # In order to make Orange find out about Pynopticon copy and rename the orngWidgets directory from the Pynopticon base directory to OrangeWidgets/Pynopticon in the Orange base directory (under Linux, the base directories should be found in /usr/lib/python2.5/site-packages, under Windows they should be found in C:\python25\lib\site-packages\)
   # When you then start Orange there should be a new tab in the toolbar named 'Pynopticon'
 
