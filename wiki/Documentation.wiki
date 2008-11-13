@@ -14,11 +14,11 @@ Make sure you have Pynopticon and Orange installed correctly and linked the two 
  * Since we want to extract the features from our dataset click and hold on the little square on the right of the _!ImageLoader _ widget. You can now connect the output of this widget to input of the _SIFT_ widget by moving the line to the little square on the left of the _SIFT_ widget. 
  * Note that neither any images are loaded nor any computations are performed since the data is not yet needed anywhere.
  * As the next step we want to perform clustering - drag the _K-Means_ widget onto the workspace.
- * Double click on the new _K-Means_ widget - you can make several choices here, we want to increase the number of clusters a little, so set that parameter to 500. Normally, we do not need to cluster over _all_ the data, so set the subsample parameter to 0.5 so that we use 50% of the feature descriptors.
+ * Double click on the new _K-Means_ widget - you can make several choices here, we want to increase the number of clusters a little, so set that parameter to 50.
  * Connect the _SIFT_ widget to the _K-Means_ widget.
  * In the next step we want to quantize the feature descriptors - draw the _Quantize_ widget into the workplace.
  * This widget needs two inputs, the cluster centers (aka codebook) and the descriptors. Connect the _K-Means_ and the _SIFT_ widget to the _Quantize_ widget.
- * Next pull the _Histogram_ widget onto the workplace, double click and set the number of bins to the number of clusters (500).
+ * Next pull the _Histogram_ widget onto the workplace, double click and set the number of bins to the number of clusters (50).
  * Connect the _Quantize_ widget to the _Histogram_ widget.
  * We now have a complete feature extraction pipeline.
  * In order to train an Orange classifier we first have to convert the data to Orange's format. This is done by the _!SlotToExampleTable _ widget, pull it onto the workspace. This widget needs to inputs, the histograms from the _Histogram_ widget and the labels of the data from the _!ImageLoader _ widget, connect them!
