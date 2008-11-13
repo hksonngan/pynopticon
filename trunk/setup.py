@@ -20,16 +20,6 @@ import sys
 import os
 import platform
 
-try:
-  from googlecode_distutils_upload import upload
-except ImportError:
-  sys.stderr.write("""\
-error: Install this module in site-packages to upload:
- http://support.googlecode.com/svn/trunk/scripts/googlecode_distutils_upload.py
-""")
-  sys.exit(3)
-
-
 # Seems to be needed, otherwise mpi_kmeans is not compiled with g++
 import distutils.sysconfig
 distutils.sysconfig.get_config_var('LIBS')
@@ -103,9 +93,8 @@ setup (name = 'pynopticon',
        include_package_data = True,
        dependency_links = ['http://www.pythonware.com/products/pil/'],
        install_requires=['setuptools', 'numpy', 'scipy', 'PIL'], #, 'arpack'],
-#       extras = {'normalizing' : ['arpack']},
+       extras = {'normalizing' : ['arpack']},
        test_suite = "pynopticon.tests.test_all",
-       zip_safe = False,
-       cmdclass={'upload':upload}
+       zip_safe = False
        )
 
