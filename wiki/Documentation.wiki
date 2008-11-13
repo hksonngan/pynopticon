@@ -10,6 +10,7 @@ Make sure you have Pynopticon and Orange installed correctly and linked the two 
  * For testing purposes lets choose a predefined dataset - click on the button _Load Dataset _ in the _!ImageLoader _ widget.
  * Select the file called _!GarfieldBarrel.xml_ and click on _Open_.
  * You can see two new categories, you can click on them and see the individual images, if you double click on them the image gets displayed.
+ * Click on the apply button in the _!ImageLoader _ widget. _Note that you have to press apply every time you (re)load your scheme._
  * Next we want to extract some features - drag the _SIFT_ widget onto the workspace.
  * Since we want to extract the features from our dataset click and hold on the little square on the right of the _!ImageLoader _ widget. You can now connect the output of this widget to input of the _SIFT_ widget by moving the line to the little square on the left of the _SIFT_ widget. 
  * Note that neither any images are loaded nor any computations are performed since the data is not yet needed anywhere.
