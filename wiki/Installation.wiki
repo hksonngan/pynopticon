@@ -15,7 +15,7 @@ You have two options in downloading and installing Pynopticon. Your first choice
 
   # Follow the steps from 'Basic install' for your OS
   # Download and install the [http://www.ailab.si/orange/ Orange Toolbox] (make sure to use the Qt4 version daily-snapshot, *not* version 1.0) following the installation instructions from the Orange website (Orange is available for Windows and Linux).
-  # In order to make Orange find out about Pynopticon copy the orngWidgets directory from the Pynopticon base directory into the OrangeWidgets dir in the Orange base directory and rename it to pynopticon (under Windows they should be found in C:\python25\lib\site-packages\)
+  # In order to make Orange find out about Pynopticon run the python script 'link_to_orange.py' from C:\python25\lib\site-packages\pynopticon (this copies the widgets directory from the Pynopticon base directory into the OrangeWidgets dir of Orange)
   # When you then start Orange there should be a new tab in the toolbar named 'Pynopticon'
 
 == Linux ==
@@ -31,7 +31,7 @@ You have two options in downloading and installing Pynopticon. Your first choice
 
   # Follow the steps from 'Basic install' for your OS
   # Download and install the [http://www.ailab.si/orange/ Orange Toolbox] (make sure to use the Qt4 version daily-snapshot with extensions, *not* version 1.0) following the installation instructions from the Orange website (Orange is available for Windows and Linux).
-  # In order to make Orange find out about Pynopticon copy the orngWidgets directory from the Pynopticon base directory into the OrangeWidgets dir in the Orange base directory and rename it to pynopticon (the base directories should be found in /usr/lib/python2.5/site-packages)
+  # In order to make Orange find out about Pynopticon run the python script 'link_to_orange.py' from /usr/lib/python2.5/site-packages/pynopticon (this copies the widgets directory from the Pynopticon base directory into the OrangeWidgets dir of Orange)
   # When you then start Orange there should be a new tab in the toolbar named 'Pynopticon'
 
 === (Additional) Compile additional feature extractors ===
