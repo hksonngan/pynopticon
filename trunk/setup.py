@@ -39,6 +39,8 @@ except:
     
 import glob
 
+destDir="orange/add-ons/Pynopticon"
+
 siftModule = Extension('_sift',
 		       language = 'c',
 		       sources = glob.glob('src/vlfeat/vl/*.c') + ['src/vlfeat/python/sift.c'],
@@ -88,13 +90,14 @@ setup (name = 'pynopticon',
 			     but also computer vision researches who want to try out an idea
 			     without having to write a complex program.''',
        ext_modules = [siftModule, kmeansModule], #, chi2Module], ToDo
-       packages = ['pynopticon', 'pynopticon.orngWidgets', 'pynopticon.tests'],
+       packages = ['pynopticon', 'pynopticon.widgets', 'pynopticon.tests'],
        package_dir={'': 'src'},
        include_package_data = True,
        dependency_links = ['http://www.pythonware.com/products/pil/'],
        install_requires=['setuptools', 'numpy', 'scipy', 'PIL'], #, 'arpack'],
        extras = {'normalizing' : ['arpack']},
        test_suite = "pynopticon.tests.test_all",
+       #extra_path=("orange-pynopticon", destDir),
        zip_safe = False
        )
 
