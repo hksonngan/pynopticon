@@ -24,9 +24,9 @@ Make sure you have Pynopticon and Orange installed correctly and linked the two 
  * We now have a complete feature extraction pipeline.
  * In order to train an Orange classifier we first have to convert the data to Orange's format. This is done by the _!SlotToExampleTable _ widget, pull it onto the workspace. This widget needs to inputs, the histograms from the _Histogram_ widget and the labels of the data from the _!ImageLoader _ widget, connect them!
  * After you made the final connection the program should start computing because in order to create the Orange datatable we need all the data processed. This can take a while (depending on your input data) as there are a lot of expensive computations taking place so you can probably have a coffee. Note, that eventhough we have to compute features of *every* image, Pynopticon does only store one image at a time in memory.
- * After the data is computed you can now train a classifier, go to the _Classifier_ tab and drag the _Classification Tree_ widget onto the workspace and connect the _!SlotToExampleTable _ widget to the _Classification Tree_ widget. The percentage bar above the classifier shows you that it is training.
- * In order to see how well you trained your classifier you can choose from the _Evaluation_ tab the _!TestLearners _ widget and draw it onto the workspace. Connect the _Classification Tree_ widget and the _!SlotToExampleTable _ to the _!TestLearners _ widget.
- * If you double click on the _!TestLearners _ widget you can see in the table on the right under C the percentage of correctly classified images.
+ * After the data is computed you can now train a classifier, go to the _Classifier_ tab and drag the _SVM_ widget onto the workspace and connect the _!SlotToExampleTable _ widget to the _Classification Tree_ widget. The percentage bar above the classifier shows you that it is training.
+ * In order to see how well you trained your classifier you can choose from the _Evaluation_ tab the _!TestLearners _ widget and draw it onto the workspace. Connect the _SVM_ widget and the _!SlotToExampleTable _ to the _!TestLearners _ widget.
+ * If you double click on the _!TestLearners _ widget you can see in the table on the right under C the percentage of correctly classified images, it should be somewhere around 90%.
  * Congratulations, you just trained your first object recognition classifier!
 
 
