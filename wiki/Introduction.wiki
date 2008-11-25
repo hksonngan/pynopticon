@@ -1,8 +1,6 @@
 #summary Goals and design principles of Pynopticon.
 
 
-
-
 == Introduction ==
 Pynopticon allows you to do object recognition (finding out if there is a certain object anywhere on the image) following a Bag of Features (BoF) approach. This approach is well established in the computer vision community, yields good overall results and is applicable to a wide range of object recognition problems. 
 
@@ -27,3 +25,6 @@ Pynopticon consists of a lot of individual modules which you can stick together 
 Because working with large databases of images can use an excessive amount of memory Pynopticon was designed with memory efficiency in mind. By using functional programming paradigms data is only stored in memory and computed when it is really needed. However, the user can also choose to save the computed data so that when you want to try out a few things nothing has to be recomputed. 
 
 To make Pynopticon more accessible you can use it in combination with the excellent Orange Toolbox (http://www.ailab.si/orange/) which provides a sophisticated GUI, lots of machine learning algorithms and nice visualization features.
+
+= Screenshot =
+http://pynopticon.googlecode.com/svn/wiki/screenshot.png
