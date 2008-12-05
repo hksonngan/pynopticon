@@ -51,21 +51,21 @@ class exampleSlot(object):
         # Input is expected to be images in PIL format
         inputType = pnc.slots.ImageType(format=["PIL"], color_space=["gray"])
         # Output is a flat array (a 2D array consisting of vectors)
-	outputType = pnc.slots.VectorType(name='Example', shape='flatarray')
+    	outputType = pnc.slots.VectorType(name='Example', shape='flatarray')
 
         # Next we have to define an input and an output slot which
         # will handle the data sending and receiving
         self.inputSlot = pnc.slots.InputSlot(name='Images',
                                              acceptsType = inputType)
 
-	# We have several options of defining an output slot (see the
+	    # We have several options of defining an output slot (see the
         # help for slots.OutputSlots for more infos).  Here, we create
         # an output slot that receives data from our just defined
         # inputSlot and calls the function self.process() on every
         # element.  The reason we are using pnc.weakmethod(class,
         # method) instead of handing self.process directly is purely
         # technical.
-	self.outputSlot = pnc.slots.OutputSlot(name='Example',
+    	self.outputSlot = pnc.slots.OutputSlot(name='Example',
                                                inputSlot = self.inputSlot,
                                                processFunc = pnc.weakmethod(self, 'process'),
                                                outputType = outputType)
