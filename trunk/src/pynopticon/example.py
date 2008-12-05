@@ -2,33 +2,33 @@ import pynopticon as pnc
 import os.path
 
 def examplePipeline():
-    #######################################
-    # Create different objects
-    #######################################
+    ###############################################
+    # Create an object for every step of the procedure
+    ###############################################
     
     # Create the ImageLoader object
     imgLoader = pnc.ImageDataset.ImageDataset()
-    # Load a predefined dataset from an XML file
-    imgLoader.loadFromXML(os.path.join(pnc.__path__[0], "datasets", "GarfieldBarrel.xml"))
-    # Since we are finished with out dataset we call prepare()
+    # Load the images (here, we use a predefined dataset from an xml-file)
+    imgLoader.loadFromXML("GarfieldBarrel.xml", demos=True)
+	# Loading complete - prepare the ImageLoader for further steps
     imgLoader.prepare()
     
-    # Create a feature extractor (in this case the sift extractor using the Valedi implemenatation
+    # Create the feature extractor object 
+	#(in this case the sift extractor,  using the valedi implementation)
     sift = pnc.features.SiftValedi()
 
-    # Create a kmeans-cluster object and set numClusters=50 (50 cluster centroids)
+    # Create a k-means-cluster object with 50 clusters 
     kmeans = pnc.cluster.Kmeans(numClusters=50)
 
-    # Create a Quantization object
+    # Create a quantization object
     quant = pnc.cluster.Quantize()
 
-    # Create a Histogram object to bin the descriptors later on using 50 bins
-    # (one for every cluster)
+    # Create a histogram object to bin the descriptors into 50 bins (one for every cluster)
     histo = pnc.histogram.Histogram(bins=50)
 
-    #######################################
+    ###############################################
     # Connect the objects via slots
-    #######################################
+    ###############################################
     pnc.connect(imgLoader.outputSlotTrain, sift.inputSlot)
     pnc.connect(sift.outputSlot, kmeans.inputSlot)
     pnc.connect(sift.outputSlot, quant.inputSlotVec)
