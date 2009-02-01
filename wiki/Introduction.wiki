@@ -30,4 +30,4 @@ http://pynopticon.googlecode.com/svn/wiki/screenshot.png
 The project was financially supported by the [http://www.karl-steinbuch-stipendium.de/ Karl-Steinbuch-Stipendium] awarded to Thomas Wiecki from the [http://www.mfg.de/ MFG-Stiftung Baden-Württemberg].
 
 Thanks for ideas, support and/or beta-testing:
-Bernhard Schölkopf, Matthias Bethge, Sebastian Nowozin, Christoph Lampert, Benedikt Janus and Andreas Dietzel.
+Bernhard Schölkopf, Matthias Bethge, Sebastian Nowozin, Christoph Lampert, Benedikt Janus and Andreas Dietzel. Thanks to Gregor Leblan of the Orange team for lots of help with their toolbox.
